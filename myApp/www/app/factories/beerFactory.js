@@ -1,0 +1,78 @@
+angular.module('BeerApp')
+.factory("BeerFactory", function ($http) {
+    return Object.create(null, {
+        "cache": {
+            value: null,
+            writable: true
+        },
+        "all": {
+            value: function () {
+                return $http({
+                    method: "GET",
+                    url: "https://capstone-571b4.firebaseio.com/.json"
+                }).then(response => {
+                    const data = response.data
+
+                    this.cache = Object.keys(data).map(key => {
+                        data[key].id = key
+                        return data[key]
+                    })
+
+                    return this.cache
+                })
+            }
+        },
+        "single": {
+            value: function (key) {
+                return $http({
+                    method: "GET",
+                    url: `https://angular-employees-6727b.firebaseio.com/employees/${key}/.json`
+                }).then(response => {
+                    return response.data
+                })
+            }
+        },
+        "murder": {
+            value: function (key) {
+                return $http({
+                    method: "DELETE",
+                    url: `https://angular-employees-6727b.firebaseio.com/employees/${key}/.json`
+                })
+            }
+        },
+        "find": {
+            value: function (searchString) {
+                const result = this.cache.find(emp => {
+                    return emp.firstName.includes(searchString) ||
+                           emp.lastName.includes(searchString)
+                })
+                return result
+            }
+        },
+        "fire": {
+            value: function (employee, key) {
+                employee.employmentEnd = Date.now()
+
+                return $http({
+                    method: "PUT",
+                    url: `https://angular-employees-6727b.firebaseio.com/employees/${key}/.json`,
+                    data: employee
+                })
+            }
+        },
+        "add": {
+            value: function (employee) {
+                return $http({
+                    method: "POST",
+                    url: "https://capstone-571b4.firebaseio.com/breweries/.json",
+                    data: {
+                        "firstName": employee.firstName,
+                        "lastName": employee.lastName,
+                        "employmentStart": Date.now(),
+                        "employmentEnd": 0
+                    }
+                })
+            }
+        }
+    })
+})
