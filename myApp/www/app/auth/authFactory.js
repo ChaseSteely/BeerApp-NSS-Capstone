@@ -6,19 +6,19 @@ angular.module("BeerApp")
         if (user) {
             currentUserData = user
 
-            if ($location.url() !== "/employees/list") {
+            if ($location.url() !== "/tab/dash") {
                 $timeout(function () {
-                    $location.url("/employees/list")
+                    $location.url("/tab/dash")
                 }, 100)
             } else {
-                $route.reload()
+                $state.reload();
             }
 
         } else {
             currentUserData = null
             console.log("User is not authenticated")
             $timeout(function () {
-                $location.url("/auth")
+                $location.url("/tab/login")
             }, 100)
         }
     })

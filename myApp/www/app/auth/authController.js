@@ -1,5 +1,5 @@
 angular.module("BeerApp")
-.controller("AuthCtrl", function($scope, $location, $state, AuthFactory) {
+.controller("AuthCtrl", function($scope, $location, $state, AuthFactory, $timeout) {
     $scope.auth = {}
 
     $scope.logoutUser = function () {
@@ -10,6 +10,7 @@ angular.module("BeerApp")
     $scope.logMeIn = function () {
         AuthFactory.authenticate($scope.auth).then(function (didLogin) {
             $scope.login = {}
+            $timeout(console.log)
             $location.url("/tab/dash")
         })
     }
