@@ -84,9 +84,17 @@ map {
   margin-left: -1em;
 }
 
+#notifications-badge {
+  background-color: cornflowerblue;
+  position: absolute;
+  border-radius: 100%;
+  opacity: 0.9;
+  margin-left: -10px;
+  color: white;
+  font-weight: bold;
+  font-size: 1.2em;
+}
 
-
-/* .item { border-style: none } */
 
 
 

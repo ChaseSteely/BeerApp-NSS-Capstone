@@ -16,7 +16,6 @@ angular
                    console.log()
                 }, 1)
                 $scope.breweries = data
-                console.log($scope.breweries.length)
             })
         } else {
             console.info("Using cached data")
