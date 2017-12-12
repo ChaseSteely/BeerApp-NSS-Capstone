@@ -115,3 +115,7 @@ service-worker.js
 .editorconfig
 markers.json
 package-lock.json
+key.pem
+cert.pem
+selection.json
+

@@ -1,6 +1,6 @@
 angular.module('BeerApp')
     .controller('MapCtrl', function ($scope, $state, $ionicLoading, BeerFactory) {
-        $scope.markers = []
+        // $scope.markers = []
         function initialize() {
             let mapOptions = {
                 center: new google.maps.LatLng(36.161049, -86.777223),
@@ -23,22 +23,27 @@ angular.module('BeerApp')
                             position: markerSpot,
                             map: map
                         });
+
                         windowContent =
-                        "<h4>" + markerEl.name + "</h4>" +
-                        '<a href="markerEl.website">' + markerEl.website + "</a>";
-                        
-                        
-                    }
-                            marker.addListener('click',  function() {
-                                let infoWindow = new google.maps.InfoWindow
-                                content: windowContent
-                            })
-                    
-                    
-                    
-    
-                  
-                });
+                            "<h4>" + markerEl.name + "</h4>" +
+                            '<a href="http://www.' + markerEl.website + '"target="_blank">' + markerEl.website + "</a>";
+
+
+                        marker.addListener('click', function () {
+                            map.setZoom(15);
+                            infowindow.open(map, marker);
+                        });
+                        let infowindow = new google.maps.InfoWindow({
+                            content: windowContent
+                        });
+                        google.maps.event.addListener(infowindow, 'closeclick', function () {
+                            map.setZoom(12);
+                            map.setCenter({lat: 36.161049, lng: -86.777223})
+                        });
+
+                    }//END for Loop
+
+                });//END of then
             }// END of place Markers
             $scope.map = map;
             placeMarkers();
@@ -53,22 +58,22 @@ angular.module('BeerApp')
         $scope.centerOnMe = function () {
             console.log("Centering");
             if (!$scope.map) {
-              return;
+                return;
             }
-        
+
             $scope.loading = $ionicLoading.show({
-              content: 'Getting current location...',
-              showBackdrop: false
+                content: 'Getting current location...',
+                showBackdrop: false
             });
-        
+
             navigator.geolocation.getCurrentPosition(function (pos) {
-              console.log('Got pos', pos);
-              $scope.map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
-              $scope.loading.hide();
+                console.log('Got pos', pos);
+                $scope.map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
+                $scope.loading.hide();
             }, function (error) {
-              alert('Unable to get location: ' + error.message);
+                alert('Unable to get location: ' + error.message);
             });
-          };
+        };
         if (document.readyState === "complete") {
             initialize();
         } else {

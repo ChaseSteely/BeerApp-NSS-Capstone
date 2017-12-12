@@ -6,40 +6,39 @@
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
   <title>BeerCentriCity - Nashville</title>
 
-  
+
   <link href="lib/ionic/css/ionic.css" rel="stylesheet">
   <link href="styles/style.css" rel="stylesheet">
-  
-  
-   <!-- update the version number as needed -->
-   <script src="https://www.gstatic.com/firebasejs/4.7.0/firebase.js"></script>
-   <!-- <script defer src="/__/firebase/4.7.0/firebase-app.js"></script> -->
-   <!-- include only the Firebase features as you need -->
-   <!-- <script defer src="/__/firebase/4.7.0/firebase-auth.js"></script>
-   <script defer src="/__/firebase/4.7.0/firebase-database.js"></script>
-   <script defer src="/__/firebase/4.7.0/firebase-storage.js"></script> -->
-   <!-- initialize the SDK after all desired features are loaded -->
-   <!-- <script defer src="/__/firebase/init.js"></script> -->
-   <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+
+
+  <!-- update the version number as needed -->
+  <script src="https://www.gstatic.com/firebasejs/4.7.0/firebase.js"></script>
+
+  <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
      <link href="css/ionic.app.css" rel="stylesheet">
    -->
-  
+
   <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
 </head>
 
 <body ng-app="BeerApp" ng-cloak>
-  <nav ng-include="'./partials/navigation/header.html'"></nav>
+  <!-- Dynamically Changes Tilte on NavBar -->
+  <ion-nav-bar class="bar-stable">
+    <button ng-click="toggleLeft()" class="button icon ion-navicon"></button>
+  </ion-nav-bar>
+
+
   <ion-nav-view></ion-nav-view>
-  
-  
+
+
   <!-- ionic/angularjs js -->
   <script src="lib/ionic/js/ionic.bundle.js"></script>
-  
+
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvYy_hqfBW0rWT8qtaHzk9_RVpPpzHj6A"></script>
 
   <!-- cordova script (this will be a 404 during development) -->
   <script src="cordova.js"></script>
-  
+
   <!-- your app's js -->
   <!-- <script src="./lib/ionic/js/angular/angular.min.js"></script> -->
   <script src="./app/app.config.js"></script>
@@ -48,6 +47,8 @@
   <script src="./app/auth/authController.js"></script>
   <script src="./app/factories/beerFactory.js"></script>
   <script src="./app/controllers/mapController.js"></script>
+  <script src="./app/controllers/dashController.js"></script>
+  <script src="./app/controllers/breweryController.js"></script>
 
 </body>
 
