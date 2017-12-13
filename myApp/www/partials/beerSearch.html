@@ -15,9 +15,8 @@
                 <h6 class="text-center">{{ beer.beer.beer_style}}</h6>
                 <p class="text-center">{{ beer.beer.beer_description}}</p>
                 <ion-checkbox class="noBorder" ng-model="checked">Check-In</ion-checkbox>
-                <button class="button button-full button-assertive" ng-click="takePhoto()">
-                    Take Photo
-                </button>
+                <button class="button button-float button-full button-assertive" ng-click="takePhoto()">Take Photo</button>
+                <button class="button button-float button-full button-assertive" ng-click="uploadPhoto()">Upload Photo</button>
                 <img ng-show="imgURI !== undefined" ng-src="{{imgURI}}" style="text-align: center">
             </div>
         </div>
