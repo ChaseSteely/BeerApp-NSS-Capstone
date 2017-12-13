@@ -20,4 +20,8 @@ angular.module('BeerApp')
         if (document.readyState === "complete") {
             loadDash();
         } 
+
+        // function untapAuth() {
+
+        // }
     });

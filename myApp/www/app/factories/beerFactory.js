@@ -15,6 +15,16 @@ angular.module('BeerApp')
                     })
                 }
             },
+            "beerMe": {
+                value: function (beerID) {
+                    return $http({
+                        method: "GET",
+                        url: `https://api.untappd.com/v4/search/beer/?q=${beerID}&compact/"true"client_id=${Untappd.clientID}&client_secret=${Untappd.clientSecret}`,
+                    }).then(response => {
+                        return response.data.response
+                    })
+                }
+            },
             "getMarkers": {
                 value: function () {
                     return firebase.auth().currentUser.getIdToken(true)
@@ -51,7 +61,7 @@ angular.module('BeerApp')
                     return firebase.auth().currentUser.getIdToken(true)
                     return $http({
                         method: "DELETE",
-                        url: `${Firebase_Config.databaseURL}//breweries/${key}/.json?auth=${idToken}`
+                        url: `${Firebase_Config.databaseURL}/breweries/${key}/.json?auth=${idToken}`
                     })
                 }
             },
@@ -70,20 +80,25 @@ angular.module('BeerApp')
 
                     return $http({
                         method: "PUT",
-                        url: `${Firebase_Config.databaseURL}//breweries/${key}/.json?auth=${idToken}`,
+                        url: `${Firebase_Config.databaseURL}/breweries/${key}/.json?auth=${idToken}`,
                         data: placeHolder
                     })
                 }
             },
-            "add": {
-                value: function (placeHolder) {
-                    return $http({
-                        method: "POST",
-                        url: "https://capstone-571b4.firebaseio.com/breweries/.json",
-                        data: placeHolder
+            "logBeer": {
+                value: function (photo) {
+                    return firebase.auth().currentUser.getIdToken(true)
+                        .then(idToken => {
+                            return $http({
+                                method: "POST",
+                                url: `${Firebase_Config.databaseURL}/users/loggedBeer.json?auth=${idToken}`,
+                                data: photo
 
-                    })
+                            })
+                        })
+
                 }
+
             }
         })
     })
