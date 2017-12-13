@@ -12,7 +12,7 @@ angular.module('BeerApp')
             BeerFactory.getMarkers().then(data => {
                 $timeout(function () {
                    console.log()
-                }, 1)
+                }, 100)
                 $scope.count = data.length
                 console.log($scope.count)
             })

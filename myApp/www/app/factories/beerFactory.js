@@ -1,5 +1,5 @@
 angular.module('BeerApp')
-    .factory('BeerFactory', function ($http, AuthFactory, Untappd) {
+    .factory('BeerFactory', function ($http, AuthFactory, Firebase_Config, Untappd) {
         return Object.create(null, {
             "cache": {
                 value: null,
@@ -21,7 +21,7 @@ angular.module('BeerApp')
                         .then(idToken => {
                             return $http({
                                 method: "GET",
-                                url: `https://beercentricity.firebaseio.com/breweries/.json?auth=${idToken}`
+                                url: `${Firebase_Config.databaseURL}/breweries/.json?auth=${idToken}`
                             }).then(response => {
                                 const data = response.data
 
@@ -40,7 +40,7 @@ angular.module('BeerApp')
                     return firebase.auth().currentUser.getIdToken(true)
                     return $http({
                         method: "GET",
-                        url: `https://beercentricity.firebaseio.com/breweries/${key}/.json?auth=${idToken}`
+                        url: `${Firebase_Config.databaseURL}/breweries/${key}/.json?auth=${idToken}`
                     }).then(response => {
                         return response.data
                     })
@@ -51,7 +51,7 @@ angular.module('BeerApp')
                     return firebase.auth().currentUser.getIdToken(true)
                     return $http({
                         method: "DELETE",
-                        url: `https://beercentricity.firebaseio.com//breweries/${key}/.json?auth=${idToken}`
+                        url: `${Firebase_Config.databaseURL}//breweries/${key}/.json?auth=${idToken}`
                     })
                 }
             },
@@ -70,7 +70,7 @@ angular.module('BeerApp')
 
                     return $http({
                         method: "PUT",
-                        url: `https://beercentricity.firebaseio.com//breweries/${key}/.json?auth=${idToken}`,
+                        url: `${Firebase_Config.databaseURL}//breweries/${key}/.json?auth=${idToken}`,
                         data: placeHolder
                     })
                 }

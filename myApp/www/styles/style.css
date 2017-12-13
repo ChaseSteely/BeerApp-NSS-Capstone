@@ -95,6 +95,17 @@ map {
   font-size: 1.2em;
 }
 
+.beerLogo {
+    margin: auto;
+    display: block;
+}
+
+.noBorder {
+  border-style: none;
+  border: 0px;
+}
+
+
 
 
 
