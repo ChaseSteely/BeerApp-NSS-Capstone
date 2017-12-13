@@ -44,35 +44,7 @@
         "grid": 0,
         "tags": [
           "beer"
-        ],
-        "colorPermutations": {
-          "158352911986034120613201216196156121721721712402221801255168012552552551": [
-            {
-              "f": 2
-            },
-            {
-              "f": 0
-            },
-            {
-              "f": 7
-            },
-            {
-              "f": 6
-            },
-            {
-              "f": 5
-            },
-            {
-              "f": 4
-            },
-            {
-              "f": 3
-            },
-            {
-              "f": 1
-            }
-          ]
-        }
+        ]
       },
       "attrs": [
         {
@@ -101,9 +73,9 @@
         }
       ],
       "properties": {
-        "order": 3,
-        "id": 0,
-        "name": "beer",
+        "order": 23,
+        "id": 3,
+        "name": "beer2",
         "prevSize": 32,
         "code": 59648,
         "codes": [
@@ -118,13 +90,13 @@
         ]
       },
       "setIdx": 0,
-      "setId": 2,
-      "iconIdx": 0
+      "setId": 3,
+      "iconIdx": 7
     }
   ],
   "height": 1024,
   "metadata": {
-    "name": "icomoon"
+    "name": "beer2"
   },
   "preferences": {
     "showGlyphs": true,
@@ -134,15 +106,23 @@
     "fontPref": {
       "prefix": "icon-",
       "metadata": {
-        "fontFamily": "icomoon"
+        "fontFamily": "beer2",
+        "majorVersion": 1,
+        "minorVersion": 0
       },
       "metrics": {
-        "emSize": 1024,
+        "emSize": 2048,
         "baseline": 6.25,
         "whitespace": 50
       },
       "embed": false,
-      "autoHost": true
+      "autoHost": true,
+      "showSelector": true,
+      "selector": "class",
+      "showMetrics": true,
+      "showMetadata": true,
+      "showVersion": true,
+      "classSelector": ".icon"
     },
     "imagePref": {
       "prefix": "icon-",
@@ -157,6 +137,8 @@
     "gridSize": 16,
     "quickUsageToken": {
       "UntitledProject": "ODkzYjcyOThlODJjNzNiMWQ5ZDExMmYxYmYyOTQwYjQjMSMxNTEzMDU1MTQ3IyMj"
-    }
+    },
+    "showLiga": false,
+    "showGrid": true
   }
 }

@@ -1,25 +1,24 @@
-/* Empty. Add your own CSS if you like */
 @font-face {
-  font-family: 'icomoon';
-  src:  url('../fonts/icomoon.eot?p7gx9s');
-  src:  url('../fonts/icomoon.eot?p7gx9s#iefix') format('embedded-opentype'),
-    url('../fonts/icomoon.ttf?p7gx9s') format('truetype'),
-    url('../fonts/icomoon.woff?p7gx9s') format('woff'),
-    url('../fonts/icomoon.svg?p7gx9s#icomoon') format('svg');
+  font-family: 'beer2';
+  src:  url('../fonts/beer2.eot?yg49x7');
+  src:  url('../fonts/beer2.eot?yg49x7#iefix') format('embedded-opentype'),
+    url('../fonts/beer2.ttf?yg49x7') format('truetype'),
+    url('../fonts/beer2.woff?yg49x7') format('woff'),
+    url('../fonts/beer2.svg?yg49x7#beer2') format('svg');
   font-weight: normal;
   font-style: normal;
 }
 
-[class^="icon-"], [class*=" icon-"] {
+.myIcon {
   /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'icomoon' !important;
+  font-family: 'beer2' !important;
   speak: none;
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
   text-transform: none;
   line-height: 1;
-  font-size: 48px;  
+  font-size: 2.5em;
 
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
@@ -44,46 +43,6 @@ map {
   padding-bottom: 10px;
 }
 
-.icon-beer .path1:before {
-  content: "\e900";
-  color: #c63c22;
-}
-.icon-beer .path2:before {
-  content: "\e901";
-  color: #9e231d;
-  margin-left: -1em;
-}
-.icon-beer .path3:before {
-  content: "\e902";
-  color: #fff;
-  margin-left: -1em;
-}
-.icon-beer .path4:before {
-  content: "\e903";
-  color: #d9d9d9;
-  margin-left: -1em;
-}
-.icon-beer .path5:before {
-  content: "\e904";
-  color: #f0deb4;
-  margin-left: -1em;
-}
-.icon-beer .path6:before {
-  content: "\e905";
-  color: #d8c49c;
-  margin-left: -1em;
-}
-.icon-beer .path7:before {
-  content: "\e906";
-  color: #ffa800;
-  margin-left: -1em;
-}
-.icon-beer .path8:before {
-  content: "\e907";
-  color: #ce8400;
-  margin-left: -1em;
-}
-
 #notifications-badge {
   background-color: cornflowerblue;
   position: absolute;
@@ -105,33 +64,48 @@ map {
   border: 0px;
 }
 
-button-float {
-  background: #00A2E8 !important;
-  color: white !important;
-  z-index: 12 !important;
-  position: absolute !important;
-  bottom: 15px !important;
-  right: 41%;
-  width: 65px;
-  height: 65px;
-  border-radius: 50% !important;
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26) !important;
-  -webkit-transform: translate3d(0, 0, 0) !important;
-  transform: translate3d(0, 0, 0) !important;
-  -webkit-transition: 0.2s linear !important;
-  transition: 0.2s linear !important;
-  -webkit-transition-property: -webkit-transform, all !important;
-  transition-property: transform, all !important;
+
+.icon-beer2 .path1:before {
+  content: "\e900";
+  color: rgb(198, 60, 34);
 }
-.button-float:hover {
-  -webkit-transform: translate3d(0, -1px, 0) !important;
-  transform: translate3d(0, -1px, 0) !important;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4) !important;
-  background: #0076A8 !important;
+.icon-beer2 .path2:before {
+  content: "\e901";
+  margin-left: -1em;
+  color: rgb(158, 35, 29);
 }
-.button-float .icon:before {
-  font-size: 34px;
+.icon-beer2 .path3:before {
+  content: "\e902";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
 }
+.icon-beer2 .path4:before {
+  content: "\e903";
+  margin-left: -1em;
+  color: rgb(217, 217, 217);
+}
+.icon-beer2 .path5:before {
+  content: "\e904";
+  margin-left: -1em;
+  color: rgb(240, 222, 180);
+}
+.icon-beer2 .path6:before {
+  content: "\e905";
+  margin-left: -1em;
+  color: rgb(216, 196, 156);
+}
+.icon-beer2 .path7:before {
+  content: "\e906";
+  margin-left: -1em;
+  color: rgb(255, 168, 0);
+}
+.icon-beer2 .path8:before {
+  content: "\e907";
+  margin-left: -1em;
+  color: rgb(206, 132, 0);
+}
+
+
 
 
 
