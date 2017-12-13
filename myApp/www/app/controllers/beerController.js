@@ -4,7 +4,7 @@ angular
         $scope.beers = []
         $scope.query = ""
         $scope.downloadURL = ""
-
+        $scope.myRating = ""
         /**
          * Use factory to get all breweries from Firebase
          */
@@ -24,9 +24,55 @@ angular
 
         }
 
+        $scope.showRating = function (rating) {
+            console.log(rating)
+            $scope.myRating = rating
+            console.log($scope.myRating)
+
+        }
+
         $scope.checkIn = function (event) {
-            BeerFactory.beerMe(event.target.id)
-            console.log($scope.downloadURL)
+            let bID = parseInt(event.target.id)
+            console.log(bID)
+            BeerFactory.beerMe(bID).then(data => {
+                $timeout(function () {
+                    console.log()
+                }, 100)
+                if ($scope.downloadURL !== null) {
+                    let beerLog = {
+                        "data": data,
+                        "url": $scope.downloadURL,
+                        // "name": data.beer.beer_name,
+                        // "brewery": data.beer.brewery.brewery_name,
+                        // "style": data.beer.beer_style,
+                        // "ibu": data.beer.beer_ibu,
+                        // "untapRating" : data.beer.weighted_rating_score.toFixed(2),
+                        "rating": $scope.myRating,
+                        // "abv": data.beer.beer_abv + "%",
+                        "wishlist": false
+                        // "id": data.beer.bid
+                    }
+                }else {
+                    let beerLog = {
+                        "data": data,
+                        // "name": data.beer.beer_name,
+                        // "brewery": data.beer.brewery.brewery_name,
+                        // "style": data.beer.beer_style,
+                        // "ibu": data.beer.beer_ibu,
+                        // "untapRating" : data.beer.weighted_rating_score.toFixed(2),
+                        "rating": $scope.myRating,
+                        // "abv": data.beer.beer_abv + "%",
+                        "wishlist": false
+                        // "id": data.beer.bid
+                    }
+                    console.log($scope.downloadURL)
+                    console.log(beerLog)
+                    BeerFactory.logBeer(beerLog)
+                }
+            })
+
+
+
 
         }
 

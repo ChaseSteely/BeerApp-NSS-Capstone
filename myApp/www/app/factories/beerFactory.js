@@ -19,7 +19,7 @@ angular.module('BeerApp')
                 value: function (beerID) {
                     return $http({
                         method: "GET",
-                        url: `https://api.untappd.com/v4/search/beer/?q=${beerID}&compact/"true"client_id=${Untappd.clientID}&client_secret=${Untappd.clientSecret}`,
+                        url: `https://api.untappd.com/v4/beer/info/${beerID}?client_id=${Untappd.clientID}&client_secret=${Untappd.clientSecret}&compact="true"`,
                     }).then(response => {
                         return response.data.response
                     })
@@ -86,13 +86,13 @@ angular.module('BeerApp')
                 }
             },
             "logBeer": {
-                value: function (photo) {
+                value: function (entry) {
                     return firebase.auth().currentUser.getIdToken(true)
                         .then(idToken => {
                             return $http({
                                 method: "POST",
                                 url: `${Firebase_Config.databaseURL}/users/loggedBeer.json?auth=${idToken}`,
-                                data: photo
+                                data: entry
 
                             })
                         })

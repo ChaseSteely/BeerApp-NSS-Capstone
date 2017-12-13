@@ -11,10 +11,26 @@
             <div class="item item-body">
                 <img class="beerLogo" ng-src="{{ beer.beer.beer_label | trusted}}">
                 <h4 class="text-center">{{ beer.beer.beer_name }}</h4>
-                <h6 class="text-center">{{ beer.brewery.brewery_name}}</h6>
-                <h6 class="text-center">{{ beer.beer.beer_style}}</h6>
+                <h4 class="text-center">{{ beer.brewery.brewery_name}}</h4>
+                <h4 class="text-center">{{ beer.brewery.location.brewery_city}}, {{ beer.brewery.location.brewery_state}}</h4>
+                <h4 class="text-center">{{ beer.beer.beer_style}}</h4>
+                <h4 class="text-center">abv:{{ beer.beer.beer_abv}}%</h4>
                 <p class="text-center">{{ beer.beer.beer_description}}</p>
                 <img ng-show="srcImage !== undefined" ng-src="{{srcImage}}" style="text-align: center">
+                <div class="list">
+                <label class="item item-input item-select">
+                    <div class="input-label">
+                      Rate Beer
+                    </div>
+                    <select ng-model="myRating" ng-change="showRating(myRating)">
+                      <option select>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                    </select>
+                  </label>
+                  </div>
                 <button class="button button-block button-assertive" ng-click="takePhoto()">Take Photo</button>
                 <button id="{{ beer.beer.bid }}" class="button button-block button-assertive" ng-click="checkIn($event)">Log Beer</button>
 
