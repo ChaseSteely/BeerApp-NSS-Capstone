@@ -3,7 +3,7 @@
     <input type="text" ng-model="query" />
 </div> -->
     <ion-content>
-        <div ng-repeat="brewery in breweries">
+        <div ng-repeat="brewery in breweries" ui-sref-opts="{reload: true, inherit: false}">
             <h4>{{ brewery.name }}</h4>
         </div>
     </ion-content>

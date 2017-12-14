@@ -24,7 +24,7 @@
 <body ng-app="BeerApp" ng-cloak>
   <!-- Dynamically Changes Tilte on NavBar -->
   <ion-nav-bar class="bar-stable">
-    <button ng-click="toggleLeft()" class="button icon ion-navicon"></button>
+      <button class="button" ng-controller = "AuthCtrl" ng-click="logoutUser()">Logout</button>
   </ion-nav-bar>
 
 

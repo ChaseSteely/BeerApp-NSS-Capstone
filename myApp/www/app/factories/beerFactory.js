@@ -45,6 +45,26 @@ angular.module('BeerApp')
                         })
                 }
             },
+            "getLoggedBeers": {
+                value: function (id) {
+                    return firebase.auth().currentUser.getIdToken(true)
+                        .then(idToken => {
+                            return $http({
+                                method: "GET",
+                                url: `${Firebase_Config.databaseURL}/loggedBeer/.json?auth=${idToken}&orderBy="uid"&limitToLast(100)&equalTo="${id}"`
+                            }).then(response => {
+                                const data = response.data
+
+                                this.cache = Object.keys(data).reverse().map(key => {
+                                    data[key].id = key
+                                    return data[key]
+                                })
+
+                                return this.cache
+                            })
+                        })
+                }
+            },
             "single": {
                 value: function (key) {
                     return firebase.auth().currentUser.getIdToken(true)

@@ -35,22 +35,16 @@ angular
                 $timeout(function () {
                     console.log()
                 }, 100)
-                if ($scope.downloadURL !== null || $scope.downloadURL !== undefined) {
-                    $scope.beerLog = {
-                        "data": data,
-                        "url": $scope.downloadURL,
-                        "rating": $scope.myRating,
-                        "wishlist": false,
-                        "uid": firebase.auth().currentUser.uid
-                    }
-                } else {
-                    $scope.beerLog = {
-                        "data": data,
-                        "rating": $scope.myRating,
-                        "wishlist": false,
-                        "uid": firebase.auth().currentUser.uid
-                    }
+
+                $scope.beerLog = {
+                    "data": data,
+                    "url": $scope.downloadURL,
+                    "rating": $scope.myRating,
+                    "wishlist": false,
+                    "dateLogged": Date.now(),
+                    "uid": firebase.auth().currentUser.uid,
                 }
+
                 bLog = $scope.beerLog
                 console.log(bLog)
                 BeerFactory.logBeer(bLog)
@@ -60,7 +54,7 @@ angular
 
         $scope.takePhoto = function () {
             let options = {
-                quality: 80,
+                quality: 100,
                 destinationType: Camera.DestinationType.DATA_URL,
                 sourceType: Camera.PictureSourceType.CAMERA,
                 allowEdit: true,
