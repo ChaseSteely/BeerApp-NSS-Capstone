@@ -59,8 +59,8 @@ angular
                 sourceType: Camera.PictureSourceType.CAMERA,
                 allowEdit: true,
                 encodingType: Camera.EncodingType.JPEG,
-                targetWidth: 250,
-                targetHeight: 250,
+                targetWidth: 300,
+                targetHeight: 300,
                 popoverOptions: CameraPopoverOptions,
                 saveToPhotoAlbum: false
             };
@@ -109,7 +109,6 @@ angular
                     }, function () {
                         // Upload completed successfully, now we can get the download URL
                         $scope.downloadURL = uploadTask.snapshot.downloadURL;
-                        console.log($scope.downloadURL)
                     });
 
             }, function (err) {

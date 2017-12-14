@@ -12,7 +12,7 @@ angular.module("BeerApp")
                 $scope.login = {}
                 $timeout(function () {
                     $location.url("/tab/dash")
-                }, 100)
+                }, 1000)
             })
         }
 
