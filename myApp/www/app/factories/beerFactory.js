@@ -91,7 +91,7 @@ angular.module('BeerApp')
                         .then(idToken => {
                             return $http({
                                 method: "POST",
-                                url: `${Firebase_Config.databaseURL}/users/loggedBeer.json?auth=${idToken}`,
+                                url: `${Firebase_Config.databaseURL}/loggedBeer/.json?auth=${idToken}`,
                                 data: entry
 
                             })

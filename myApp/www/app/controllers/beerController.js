@@ -5,12 +5,9 @@ angular
         $scope.query = ""
         $scope.downloadURL = ""
         $scope.myRating = ""
-        /**
-         * Use factory to get all breweries from Firebase
-         */
-        // BeerFactory.getMarkers().then(data => {
-        //     $scope.breweries = data
-        // })
+        $scope.beerLog = {}
+
+        //  Use factory to get all breweries from Firebase
         $scope.finder = (event, query) => {
             if (event.key === "Enter") {
                 BeerFactory.searchUntappd(query).then(data => {
@@ -38,41 +35,26 @@ angular
                 $timeout(function () {
                     console.log()
                 }, 100)
-                if ($scope.downloadURL !== null) {
-                    let beerLog = {
+                if ($scope.downloadURL !== null || $scope.downloadURL !== undefined) {
+                    $scope.beerLog = {
                         "data": data,
                         "url": $scope.downloadURL,
-                        // "name": data.beer.beer_name,
-                        // "brewery": data.beer.brewery.brewery_name,
-                        // "style": data.beer.beer_style,
-                        // "ibu": data.beer.beer_ibu,
-                        // "untapRating" : data.beer.weighted_rating_score.toFixed(2),
                         "rating": $scope.myRating,
-                        // "abv": data.beer.beer_abv + "%",
-                        "wishlist": false
-                        // "id": data.beer.bid
+                        "wishlist": false,
+                        "uid": firebase.auth().currentUser.uid
                     }
-                }else {
-                    let beerLog = {
+                } else {
+                    $scope.beerLog = {
                         "data": data,
-                        // "name": data.beer.beer_name,
-                        // "brewery": data.beer.brewery.brewery_name,
-                        // "style": data.beer.beer_style,
-                        // "ibu": data.beer.beer_ibu,
-                        // "untapRating" : data.beer.weighted_rating_score.toFixed(2),
                         "rating": $scope.myRating,
-                        // "abv": data.beer.beer_abv + "%",
-                        "wishlist": false
-                        // "id": data.beer.bid
+                        "wishlist": false,
+                        "uid": firebase.auth().currentUser.uid
                     }
-                    console.log($scope.downloadURL)
-                    console.log(beerLog)
-                    BeerFactory.logBeer(beerLog)
                 }
+                bLog = $scope.beerLog
+                console.log(bLog)
+                BeerFactory.logBeer(bLog)
             })
-
-
-
 
         }
 
@@ -134,19 +116,12 @@ angular
                         // Upload completed successfully, now we can get the download URL
                         $scope.downloadURL = uploadTask.snapshot.downloadURL;
                         console.log($scope.downloadURL)
-                        // const photo = {
-                        //     "url": $scope.downloadURL,
-                        //     "uid": firebase.auth().currentUser.uid,
-                        //     "time": Date.now()
-                        // }
-
                     });
 
             }, function (err) {
                 // error
             });
         }
-
 
     })
 
