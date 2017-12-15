@@ -25,6 +25,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.beerImg {
+  object-fit: contain;
+}
+
 map {
   display: block;
   width: 100%;
@@ -58,6 +62,7 @@ map {
     margin: auto;
     display: block;
 }
+
 
 .noBorder {
   border-style: none;

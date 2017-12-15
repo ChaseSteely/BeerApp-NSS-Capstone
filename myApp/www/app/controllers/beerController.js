@@ -48,21 +48,23 @@ angular
                 bLog = $scope.beerLog
                 console.log(bLog)
                 BeerFactory.logBeer(bLog)
+                
             })
 
         }
 
         $scope.takePhoto = function () {
             let options = {
-                quality: 100,
+                quality: 60,
                 destinationType: Camera.DestinationType.DATA_URL,
                 sourceType: Camera.PictureSourceType.CAMERA,
-                allowEdit: true,
+                allowEdit: false,
                 encodingType: Camera.EncodingType.JPEG,
-                targetWidth: 300,
-                targetHeight: 300,
+                targetWidth: 275,
+                targetHeight: 375,
                 popoverOptions: CameraPopoverOptions,
-                saveToPhotoAlbum: false
+                saveToPhotoAlbum: false,
+                correctOrientation: true
             };
 
             $cordovaCamera.getPicture(options).then(function (imageData) {

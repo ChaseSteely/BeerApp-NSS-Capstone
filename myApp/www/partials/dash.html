@@ -16,7 +16,7 @@
     </ion-card>
     <div ng-repeat="beer in beers" class="list card padding" ui-sref-opts="{reload: true, inherit: false}">
       <div class="item item-body">
-          <img ng-show="beer.url !== undefined" class="beerLogo" ng-src="{{ beer.url }}">
+          <img ng-show="beer.url !== undefined" class="beerLogo beerImg" ng-src="{{ beer.url }}">
           <h4 class="text-center">{{ beer.data.beer.beer_name }}</h4>
           <h4 class="text-center">{{ beer.data.beer.beer_style }}</h4>
           <h4 class="text-center">Rating: {{ beer.rating }}</h4>
