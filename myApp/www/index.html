@@ -24,9 +24,8 @@
 <body ng-app="BeerApp" ng-cloak>
   <!-- Dynamically Changes Tilte on NavBar -->
   <ion-nav-bar class="bar-stable">
-      <button class="button button-calm" ng-controller="AuthCtrl" ng-click="logoutUser()">Logout</button>
+    <button class="button button-calm" ng-controller="AuthCtrl" ng-click="logoutUser()">Logout</button>
   </ion-nav-bar>
-
 
   <ion-nav-view></ion-nav-view>
 
@@ -34,8 +33,7 @@
   <!-- ionic/angularjs js -->
   <script src="lib/ionic/js/ionic.bundle.js"></script>
   <script src="lib/ionic/js/ng-cordova.min.js"></script>
-  <script src="lib/ionic/js/ionic.native.min.js"></script>
-
+  <script type="text/javascript" src="./lib/Toast.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvYy_hqfBW0rWT8qtaHzk9_RVpPpzHj6A"></script>
 
   <!-- cordova script (this will be a 404 during development) -->

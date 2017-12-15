@@ -29,6 +29,10 @@
   object-fit: contain;
 }
 
+.searchPhoto {
+  width: 275px;
+  height: 325px;
+}
 map {
   display: block;
   width: 100%;

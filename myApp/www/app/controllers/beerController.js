@@ -1,6 +1,6 @@
 angular
     .module("BeerApp")
-    .controller("BeerCtrl", function (BeerFactory, $timeout, $scope, $cordovaCamera, $cordovaFile, Firebase_Config) {
+    .controller("BeerCtrl", function (BeerFactory, $timeout,$ionicLoading, $scope, $cordovaCamera, $cordovaFile, Firebase_Config, $cordovaToast) {
         $scope.beers = []
         $scope.query = ""
         $scope.downloadURL = ""
@@ -46,12 +46,20 @@ angular
                 }
 
                 bLog = $scope.beerLog
-                console.log(bLog)
                 BeerFactory.logBeer(bLog)
-                
+                // create a toast with settings:
             })
 
         }
+
+        $scope.showToast = function(message) {
+            if (window.plugins && window.plugins.toast) {
+                window.plugins.toast.showLongCenter("Cheers");
+            }
+            else $ionicLoading.show({ template: "Cheers", noBackdrop: true, duration: 2000 });
+        }
+          
+          
 
         $scope.takePhoto = function () {
             let options = {
@@ -60,8 +68,6 @@ angular
                 sourceType: Camera.PictureSourceType.CAMERA,
                 allowEdit: false,
                 encodingType: Camera.EncodingType.JPEG,
-                targetWidth: 275,
-                targetHeight: 375,
                 popoverOptions: CameraPopoverOptions,
                 saveToPhotoAlbum: false,
                 correctOrientation: true

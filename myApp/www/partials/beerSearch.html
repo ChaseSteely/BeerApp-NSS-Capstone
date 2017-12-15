@@ -6,7 +6,6 @@
                 <input ng-model="query" ng-keypress="finder($event, query)" type="text" placeholder="search">
             </label>
         </div>
-
         <div ng-repeat="beer in beers.beers.items" class="list card padding">
             <div class="item item-body">
                 <img class="beerLogo" ng-src="{{ beer.beer.beer_label | trusted}}">
@@ -16,7 +15,7 @@
                 <h4 class="text-center">{{ beer.beer.beer_style}}</h4>
                 <h4 class="text-center">abv:{{ beer.beer.beer_abv}}%</h4>
                 <p class="text-center">{{ beer.beer.beer_description}}</p>
-                <img ng-show="srcImage !== undefined" ng-src="{{srcImage}}" style="text-align: center">
+                <img ng-show="srcImage !== undefined" class="searchPhoto"ng-src="{{srcImage}}" style="text-align: center">
                 <div class="list">
                 <label class="item item-input item-select">
                     <div class="input-label">
@@ -32,7 +31,7 @@
                   </label>
                   </div>
                 <button class="button button-block" ng-click="takePhoto()">Take Photo</button>
-                <button id="{{ beer.beer.bid }}" class="button button-block" ng-click="checkIn($event)">Log Beer</button>
+                <button id="{{ beer.beer.bid }}" class="button button-block" ng-click="checkIn($event); showToast($scope.msg)">Log Beer</button>
 
             </div>
         </div>
