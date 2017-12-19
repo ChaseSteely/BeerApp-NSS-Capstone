@@ -7,7 +7,7 @@ angular
         $scope.myRating = ""
         $scope.beerLog = {}
 
-        //  Use factory to get all breweries from Firebase
+        //  Use factory to get all beers from Firebase
         $scope.finder = (event, query) => {
             if (event.key === "Enter") {
                 BeerFactory.searchUntappd(query).then(data => {
@@ -63,7 +63,7 @@ angular
 
         $scope.takePhoto = function () {
             let options = {
-                quality: 60,
+                quality: 80,
                 destinationType: Camera.DestinationType.DATA_URL,
                 sourceType: Camera.PictureSourceType.CAMERA,
                 allowEdit: false,

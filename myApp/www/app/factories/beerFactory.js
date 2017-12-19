@@ -25,6 +25,26 @@ angular.module('BeerApp')
                     })
                 }
             },
+            "visitBrewery": {
+                value: function (breweryID) {
+                    return $http({
+                        method: "GET",
+                        url: `https://api.untappd.com/v4/brewery/info/${breweryID}?client_id=${Untappd.clientID}&client_secret=${Untappd.clientSecret}&compact="true"`,
+                    }).then(response => {
+                        return response.data.response
+                    })
+                }
+            },
+            "searchBrewery": {
+                value: function (query) {
+                    return $http({
+                        method: "GET",
+                        url: `https://api.untappd.com/v4/search/brewery/?q=${query}&client_id=${Untappd.clientID}&client_secret=${Untappd.clientSecret}`,
+                    }).then(response => {
+                        return response.data.response
+                    })
+                }
+            },
             "getMarkers": {
                 value: function () {
                     return firebase.auth().currentUser.getIdToken(true)
@@ -55,7 +75,7 @@ angular.module('BeerApp')
                             }).then(response => {
                                 const data = response.data
 
-                                this.cache = Object.keys(data).reverse().map(key => {
+                                this.cache = Object.keys(data).map(key => {
                                     data[key].id = key
                                     return data[key]
                                 })
@@ -112,6 +132,21 @@ angular.module('BeerApp')
                             return $http({
                                 method: "POST",
                                 url: `${Firebase_Config.databaseURL}/loggedBeer/.json?auth=${idToken}`,
+                                data: entry
+
+                            })
+                        })
+
+                }
+
+            },
+            "logBrewery": {
+                value: function (entry) {
+                    return firebase.auth().currentUser.getIdToken(true)
+                        .then(idToken => {
+                            return $http({
+                                method: "POST",
+                                url: `${Firebase_Config.databaseURL}/breweriesVisited/.json?auth=${idToken}`,
                                 data: entry
 
                             })

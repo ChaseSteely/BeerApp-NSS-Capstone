@@ -1,10 +1,18 @@
-<ion-view title="Breweries">
-    <!-- <div>
-    <input type="text" ng-model="query" />
-</div> -->
-    <ion-content>
-        <div ng-repeat="brewery in breweries" ui-sref-opts="{reload: true, inherit: false}">
-            <h4>{{ brewery.name }}</h4>
+<ion-view title="Brewery Search">
+    <ion-content class="padding">
+        <div class="list list-inset">
+            <label class="item item-input">
+                <i class="icon ion-search placeholder-icon"></i>
+                <input ng-model="query" ng-keypress="finder($event, query)" type="text" placeholder="search">
+            </label>
+        </div>
+        <div ng-repeat="brewery in breweries.brewery.items" class="list card padding">
+            <div class="item item-body">
+                <img class="beerLogo" ng-src="{{ brewery.brewery.brewery_label | trusted}}">
+                <!-- <h4 class="text-center">{{ beer.beer.beer_name }}</h4> -->
+                <h4 class="text-center">{{ brewery.brewery.brewery_name}}</h4>
+                <button id="{{ brewery.brewery.brewery_id }}" class="button button-block" ng-click="showInfo($event)">Show Brewery Info</button>
+            </div>
         </div>
     </ion-content>
 </ion-view>
