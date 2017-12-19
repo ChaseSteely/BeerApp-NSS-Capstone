@@ -2,7 +2,7 @@
     <ion-content class="padding">
         <div class="list list-inset">
             <label class="item item-input">
-                <i class="icon ion-search placeholder-icon"></i>
+                <i class="icon ion-search placeholder-icon" style="color: #FF8200"></i>
                 <input ng-model="query" ng-keypress="finder($event, query)" type="text" placeholder="search">
             </label>
         </div>
@@ -11,7 +11,7 @@
                 <img class="beerLogo" ng-src="{{ brewery.brewery.brewery_label | trusted}}">
                 <!-- <h4 class="text-center">{{ beer.beer.beer_name }}</h4> -->
                 <h4 class="text-center">{{ brewery.brewery.brewery_name}}</h4>
-                <button id="{{ brewery.brewery.brewery_id }}" class="button button-block" ng-click="showInfo($event)">Show Brewery Info</button>
+                <button id="{{ brewery.brewery.brewery_id }}" class="button button-block button-positive" ng-click="showInfo($event)">Show Brewery Info</button>
             </div>
         </div>
     </ion-content>

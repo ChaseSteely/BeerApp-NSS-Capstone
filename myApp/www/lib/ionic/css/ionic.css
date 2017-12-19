@@ -2503,9 +2503,9 @@ a.subdued {
     .bar.bar-stable .title {
       color: #444; }
   .bar.bar-positive {
-    border-color: #145fd7;
-    background-color: #4a87ee;
-    background-image: linear-gradient(0deg, #145fd7, #145fd7 50%, transparent 50%);
+    border-color: #FF8200;
+    background-color: rgb(255, 145, 36);
+    background-image: linear-gradient(0deg, #FF8200, #FF8200 50%, transparent 50%);
     color: #fff; }
     .bar.bar-positive .title {
       color: #fff; }
@@ -4790,30 +4790,30 @@ progress {
         box-shadow: none;
         color: #fff; }
   .button.button-positive {
-    border-color: #145fd7;
-    background-color: #4a87ee;
+    border-color: #FF8200;
+    background-color: #FF8200;
     color: #fff; }
     .button.button-positive:hover {
       color: #fff;
       text-decoration: none; }
     .button.button-positive.active {
-      border-color: #145fd7;
-      background-color: #145fd7;
+      border-color: #FF8200;
+      background-color: rgb(253, 166, 80);
       box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.15); }
     .button.button-positive.button-clear {
       border-color: transparent;
       background: none;
       box-shadow: none;
-      color: #4a87ee; }
+      color: #FF8200; }
     .button.button-positive.button-icon {
       border-color: transparent;
       background: none; }
     .button.button-positive.button-outline {
-      border-color: #4a87ee;
+      border-color: #FF8200;
       background: transparent;
-      color: #4a87ee; }
+      color: #FF8200; }
       .button.button-positive.button-outline.active {
-        background-color: #4a87ee;
+        background-color: #FF8200;
         box-shadow: none;
         color: #fff; }
   .button.button-calm {

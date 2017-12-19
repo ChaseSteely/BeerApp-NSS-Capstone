@@ -20,7 +20,6 @@ angular
             $scope.modal.show();
         };
         $scope.closeModal = function (event) {
-            debugger
             $scope.modal.hide();
             let bID = parseInt(event.target.id)
             console.log(bID)
@@ -29,17 +28,20 @@ angular
                     console.log()
                 }, 100)
 
-                $scope.brewLog = {
-                    "data": data,
-                    "visited": true,
-                    "dateLogged": Date.now(),
-                    "uid": firebase.auth().currentUser.uid,
-                }
+                $scope.brewLog = data
+                    // "data": data
+                    // "visited": true,
+                    // "dateLogged": Date.now(),
+                    // "uid": firebase.auth().currentUser.uid,
+                
 
                 bLog = $scope.brewLog
                 BeerFactory.logBrewery(bLog)
                 // create a toast with settings:
             })
+        };
+        $scope.hideModal = function () {
+            $scope.modal.hide();
         };
 
         //  Use factory to get all breweries from Firebase

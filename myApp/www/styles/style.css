@@ -9,6 +9,16 @@
   font-style: normal;
 }
 
+body {
+  font-family: 'Josefin Slab:600', serif;
+}
+h1, .tab-title, .button {
+  font-family: 'Josefin Slab:700', serif;
+ font-weight: bold;
+}
+
+
+
 .myIcon {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'beer2' !important;
