@@ -23,13 +23,18 @@ h1, .tab-title, .button {
 
 .dashP {
   padding-top: 5px;
+  padding-bottom: 5px;
+  border-style: none;
+  border: 0px;
 }
 
 .dashTabs {
   background-color: white;
   position: inherit;
-  padding-top: 0px;
+  padding-top: 15px;
   padding-bottom: 0px;
+  border-style: none;
+  border: 0px;
 }
 
 .myIcon {
@@ -91,11 +96,10 @@ map {
 }
 
 
-.noBorder {
+p, .noBorder {
   border-style: none;
   border: 0px;
 }
-
 
 .icon-beer2 .path1:before {
   content: "\e900";

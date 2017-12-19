@@ -1,6 +1,6 @@
 angular
     .module("BeerApp")
-    .controller("BeerCtrl", function (BeerFactory, $timeout,$ionicLoading, $scope, $cordovaCamera, $cordovaFile, Firebase_Config, $cordovaToast) {
+    .controller("BeerCtrl", function (BeerFactory, $timeout, $ionicLoading, $scope, $cordovaCamera, $cordovaFile, Firebase_Config, $cordovaToast) {
         $scope.beers = []
         $scope.query = ""
         $scope.downloadURL = ""
@@ -47,7 +47,31 @@ angular
 
                 bLog = $scope.beerLog
                 BeerFactory.logBeer(bLog)
-                // create a toast with settings:
+
+            })
+
+        }
+
+        $scope.addWishlist = function (event) {
+            let bID = parseInt(event.target.id)
+            console.log(bID)
+            BeerFactory.beerMe(bID).then(data => {
+                $timeout(function () {
+                    console.log()
+                }, 100)
+
+                $scope.beerLog = {
+                    "data": data,
+                    "url": $scope.downloadURL,
+                    "rating": $scope.myRating,
+                    "wishlist": true,
+                    "dateLogged": Date.now(),
+                    "uid": firebase.auth().currentUser.uid
+                }
+
+                bLog = $scope.beerLog
+                BeerFactory.logBeer(bLog)
+
             })
 
         }
@@ -58,7 +82,7 @@ angular
         //     }
         //     else $ionicLoading.show({ template: "Cheers", noBackdrop: true, duration: 2000 });
         // }
-          
+
 
         $scope.takePhoto = function () {
             let options = {
@@ -122,12 +146,10 @@ angular
                 // error
             });
         }
-
     })
-
+    //I have to use this to return the beer and brewery labels from Untappd API
     .filter('trusted', ['$sce', function ($sce) {
         return function (url) {
             return $sce.trustAsResourceUrl(url);
         };
-
     }]);

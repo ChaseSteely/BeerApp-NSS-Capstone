@@ -4,29 +4,22 @@ Each tab's child <ion-nav-view> directive will have its own
 navigation history that also transitions its views in and out.
 -->
 
-    <ion-tabs class="tabs-icon-top tabs-color-active-positive">
+    <ion-tabs class="tabs-energized tabs-icon-top">
 
         <!-- Dashboard Tab -->
-        <ion-tab title="profile" icon-off="ion-ios-pulse" icon-on="ion-ios-pulse-strong" href="#/tab/dash">
+        <ion-tab title="profile" icon-on="ion-person" href="#/tab/dash">
             <ion-nav-view name="tab-dash"></ion-nav-view>
         </ion-tab>
-
         <!-- Map Tab -->
-        <ion-tab title="map" icon-off="ion-ios-chatboxes-outline" icon-on="ion-ios-chatboxes" href="#/tab/map">
+        <ion-tab title="nashville" icon-on="ion-map" href="#/tab/map">
             <ion-nav-view name="tab-map"></ion-nav-view>
         </ion-tab>
-
         <!-- Breweries Tab -->
-        <ion-tab title="breweries" icon-off="ion-ios-gear-outline" icon-on="ion-ios-gear" href="#/tab/breweries">
+        <ion-tab title="breweries" icon-on="ion-location" href="#/tab/breweries">
             <ion-nav-view name="tab-breweries"></ion-nav-view>
         </ion-tab>
         <!-- Beer Tab -->
-        <ion-tab title="beer" icon-off="ion-ios-gear-outline" icon-on="ion-ios-gear" href="#/tab/beer">
+        <ion-tab title="beers" icon-on="ion-beer" href="#/tab/beer">
             <ion-nav-view name="tab-beer"></ion-nav-view>
         </ion-tab>
-        <!-- Login Tab -->
-        <!-- <ion-tab title="logout" icon-off="ion-ios-gear-outline" icon-on="ion-ios-gear" href="#/tab/login">
-            <ion-nav-view name="tab-login"></ion-nav-view>
-        </ion-tab> -->
-
     </ion-tabs>

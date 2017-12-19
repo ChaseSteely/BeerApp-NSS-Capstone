@@ -15,21 +15,22 @@
                 <h4 class="text-center">{{ beer.beer.beer_style}}</h4>
                 <h4 class="text-center">abv:{{ beer.beer.beer_abv}}%</h4>
                 <p class="text-center">{{ beer.beer.beer_description}}</p>
-                <img ng-show="srcImage !== undefined" class="searchPhoto"ng-src="{{srcImage}}" style="text-align: center">
+                <img ng-show="srcImage !== undefined" class="searchPhoto" ng-src="{{srcImage}}" style="text-align: center">
                 <div class="list">
-                <label class="item item-input item-select">
-                    <div class="input-label">
-                      Rate Beer
-                    </div>
-                    <select ng-model="myRating" ng-change ="showRating(myRating)">
-                      <option selected>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
-                    </select>
-                  </label>
-                  </div>
+                    <button id="{{ beer.beer.bid }}" class="button button-block button-positive" ng-click="addWishlist($event); showToast($scope.msg)">Add To Wishlist</button>
+                    <label class="item item-input item-select">
+                        <div class="input-label">
+                            Rate Beer
+                        </div>
+                        <select ng-model="myRating" ng-change="showRating(myRating)">
+                            <option selected>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </label>
+                </div>
                 <button class="button button-block" ng-click="takePhoto()">Take Photo</button>
                 <button id="{{ beer.beer.bid }}" class="button button-block button-positive" ng-click="checkIn($event); showToast($scope.msg)">Log Beer</button>
 

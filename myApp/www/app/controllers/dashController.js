@@ -5,12 +5,13 @@ angular.module('BeerApp')
         $scope.count = 0
         $scope.beers = []
         $scope.breweries = []
+        $scope.wishes = []
         
         function loadDash() {
             drinker = AuthFactory.getUser()
             $scope.name = drinker.displayName
             $scope.photo = drinker.photoURL
-            BeerFactory.getMarkers().then(data => {
+            BeerFactory.getLoggedBeers(drinker.uid).then(data => {
                 $timeout(function () {
                     console.log()
                 }, 100)
@@ -21,17 +22,35 @@ angular.module('BeerApp')
 
         //get beers logged by current User on tab click
          $scope.getBeerLog = function () {
+            $scope.wishes = []
+            $scope.breweries = []
             drinker = AuthFactory.getUser().uid
             BeerFactory.getLoggedBeers(drinker).then(data => {
                 $timeout(function () {
                     console.log()
                 }, 100)
+                $scope.count = data.length
                 $scope.beers = data
                 console.log($scope.beers)
             })
         }
 
+         $scope.getWishList = function () {
+            $scope.beers = []
+            $scope.breweries = []
+            drinker = AuthFactory.getUser().uid
+            BeerFactory.getLoggedBeers(drinker).then(data => {
+                $timeout(function () {
+                    console.log()
+                }, 100)
+                $scope.wishes = data
+                console.log($scope.wishes)
+            })
+        }
+
          $scope.getBreweryLog = function () {
+            $scope.wishes = []
+            $scope.beers = []
             drinker = AuthFactory.getUser().uid
             BeerFactory.getLoggedBreweries(drinker).then(data => {
                 $timeout(function () {
