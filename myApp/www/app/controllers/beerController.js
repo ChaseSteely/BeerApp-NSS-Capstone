@@ -42,7 +42,7 @@ angular
                     "rating": $scope.myRating,
                     "wishlist": false,
                     "dateLogged": Date.now(),
-                    "uid": firebase.auth().currentUser.uid,
+                    "uid": firebase.auth().currentUser.uid
                 }
 
                 bLog = $scope.beerLog
@@ -58,7 +58,6 @@ angular
         //     }
         //     else $ionicLoading.show({ template: "Cheers", noBackdrop: true, duration: 2000 });
         // }
-          
           
 
         $scope.takePhoto = function () {

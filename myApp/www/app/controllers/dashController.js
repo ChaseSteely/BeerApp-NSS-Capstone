@@ -4,6 +4,7 @@ angular.module('BeerApp')
         $scope.photo = ""
         $scope.count = 0
         $scope.beers = []
+        $scope.breweries = []
         
         function loadDash() {
             drinker = AuthFactory.getUser()
@@ -16,9 +17,10 @@ angular.module('BeerApp')
                 $scope.count = data.length
                 console.log($scope.count)
             })
-
         }//END loadDash
-        function getBeerLog() {
+
+        //get beers logged by current User on tab click
+         $scope.getBeerLog = function () {
             drinker = AuthFactory.getUser().uid
             BeerFactory.getLoggedBeers(drinker).then(data => {
                 $timeout(function () {
@@ -28,12 +30,32 @@ angular.module('BeerApp')
                 console.log($scope.beers)
             })
         }
+
+         $scope.getBreweryLog = function () {
+            drinker = AuthFactory.getUser().uid
+            BeerFactory.getLoggedBreweries(drinker).then(data => {
+                $timeout(function () {
+                    console.log()
+                }, 100)
+                $scope.breweries = data
+                console.log($scope.breweries)
+            })
+        }
+
+        //when page loads load the dash
         if (document.readyState === "complete") {
             loadDash()
-            getBeerLog()
         }
 
         // function untapAuth() {
 
         // }
-    });
+    })
+
+    //I have to use this to return the beer and brewery labels from Untappd API
+    .filter('trusted', ['$sce', function ($sce) {
+        return function (url) {
+            return $sce.trustAsResourceUrl(url);
+        };
+
+    }]);

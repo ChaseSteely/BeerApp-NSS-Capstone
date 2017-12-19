@@ -1,14 +1,16 @@
+//Brewery Controller
+//Author: Chase Steely
+//Purpose: To search for breweries in Untappd API and show details of brewery selected and allows for user to log a brewery they visit.
+
 angular
     .module("BeerApp")
     .controller("BreweryCtrl", function (BeerFactory, $timeout, $ionicLoading, $scope, Firebase_Config, $ionicModal) {
-
         $scope.breweries = []
         $scope.infos = []
         $scope.brewLog = {}
         $scope.query = ""
-        /**
-         * Use factory to get all breweries from Firebase
-         */
+
+        //Ionic code needed to show and close Modal
         $ionicModal.fromTemplateUrl('../../partials/breweryInfoModal.html', {
             scope: $scope,
             animation: 'slide-in-up',
@@ -19,6 +21,8 @@ angular
         $scope.openModal = function () {
             $scope.modal.show();
         };
+
+        //Log Brewery if that is the one you are visiting
         $scope.closeModal = function (event) {
             $scope.modal.hide();
             let bID = parseInt(event.target.id)
@@ -27,24 +31,21 @@ angular
                 $timeout(function () {
                     console.log()
                 }, 100)
-
-                $scope.brewLog = data
-                    // "data": data
-                    // "visited": true,
-                    // "dateLogged": Date.now(),
-                    // "uid": firebase.auth().currentUser.uid,
-                
-
+                $scope.brewLog = {
+                 "data": data,
+                 "dateLogged": Date.now(),
+                 "uid": firebase.auth().currentUser.uid,
+                 "visited": true
+                }
                 bLog = $scope.brewLog
                 BeerFactory.logBrewery(bLog)
-                // create a toast with settings:
             })
         };
         $scope.hideModal = function () {
             $scope.modal.hide();
         };
 
-        //  Use factory to get all breweries from Firebase
+        // Use query from search bar to make a call to Untappd API
         $scope.finder = (event, query) => {
             if (event.key === "Enter") {
                 BeerFactory.searchBrewery(query).then(data => {
@@ -57,6 +58,7 @@ angular
             }
 
         }
+        //Shows modal of the Brewery selected from search
         $scope.showInfo = function (event) {
             $scope.openModal()
             let bID = parseInt(event.target.id)
@@ -72,31 +74,6 @@ angular
 
         }
 
-
-
-        // $scope.checkIn = function (event) {
-        //     $scope.modal.hide();
-        //     let bID = parseInt(event.target.id)
-        //     console.log(bID)
-        //     BeerFactory.visitBrewery(bID).then(data => {
-        //         $timeout(function () {
-        //             console.log()
-        //         }, 100)
-
-        //         $scope.brewLog = {
-        //             "data": data,
-        //             "visited": true,
-        //             "dateLogged": Date.now(),
-        //             "uid": firebase.auth().currentUser.uid,
-        //         }
-
-        //         bLog = $scope.brewLog
-        //         BeerFactory.logBrewery(bLog)
-        //         // create a toast with settings:
-        //     })
-
-        // }
-
         // $scope.showToast = function(message) {
         //     if (window.plugins && window.plugins.toast) {
         //         window.plugins.toast.showLongCenter("Thanks for Visiting!");
@@ -106,7 +83,7 @@ angular
 
     })
 
-
+    //I have to use this to return the beer and brewery labels from Untappd API
     .filter('trusted', ['$sce', function ($sce) {
         return function (url) {
             return $sce.trustAsResourceUrl(url);

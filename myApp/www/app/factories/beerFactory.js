@@ -71,7 +71,27 @@ angular.module('BeerApp')
                         .then(idToken => {
                             return $http({
                                 method: "GET",
-                                url: `${Firebase_Config.databaseURL}/loggedBeer/.json?auth=${idToken}&orderBy="uid"&limitToLast(100)&equalTo="${id}"`
+                                url: `${Firebase_Config.databaseURL}/loggedBeer/.json?auth=${idToken}&orderBy="uid"&equalTo="${id}"`
+                            }).then(response => {
+                                const data = response.data
+
+                                this.cache = Object.keys(data).map(key => {
+                                    data[key].id = key
+                                    return data[key]
+                                })
+
+                                return this.cache
+                            })
+                        })
+                }
+            },
+            "getLoggedBreweries": {
+                value: function (id) {
+                    return firebase.auth().currentUser.getIdToken(true)
+                        .then(idToken => {
+                            return $http({
+                                method: "GET",
+                                url: `${Firebase_Config.databaseURL}/loggedBreweries/.json?auth=${idToken}&orderBy="uid"&equalTo="${id}"`
                             }).then(response => {
                                 const data = response.data
 
@@ -146,7 +166,7 @@ angular.module('BeerApp')
                         .then(idToken => {
                             return $http({
                                 method: "POST",
-                                url: `${Firebase_Config.databaseURL}/nashvilleBreweries/.json?auth=${idToken}`,
+                                url: `${Firebase_Config.databaseURL}/loggedBreweries/.json?auth=${idToken}`,
                                 data: entry
 
                             })

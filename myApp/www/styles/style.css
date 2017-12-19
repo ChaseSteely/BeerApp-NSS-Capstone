@@ -17,7 +17,20 @@ h1, .tab-title, .button {
  font-weight: bold;
 }
 
+.dashProfile {
+  padding-bottom: 0px;
+}
 
+.dashP {
+  padding-top: 5px;
+}
+
+.dashTabs {
+  background-color: white;
+  position: inherit;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
 
 .myIcon {
   /* use !important to prevent issues with browser extensions that change fonts */
