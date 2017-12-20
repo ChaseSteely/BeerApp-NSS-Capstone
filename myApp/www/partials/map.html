@@ -1,7 +1,22 @@
-
-<ion-view title="Map">
-<ion-content scroll="false">
-  <map id="map"></map>
-</ion-content>
+<ion-view title="NASHVILLE">
+ 
+    <div class="tabs-striped tabs-top tabs-background-light tabs-color-energize">
+      <div class="tabs">
+        <a class="tab-item active" ng-click="showVisited()">
+          <i class="icon ion-home"></i>
+          Visited
+        </a>
+        <a class="tab-item" href="#">
+          <i class="icon ion-star"></i>
+          Favorites
+        </a>
+        <a class="tab-item" href="#">
+          <i class="icon ion-gear-a"></i>
+          Settings
+        </a>
+      </div>
+    </div>
+    <ion-content scroll="false">
+      <map class="map" id="map"></map>
+  </ion-content>
 </ion-view>
-

@@ -51,7 +51,7 @@ angular.module('BeerApp')
                         .then(idToken => {
                             return $http({
                                 method: "GET",
-                                url: `${Firebase_Config.databaseURL}/breweries/.json?auth=${idToken}`
+                                url: `${Firebase_Config.databaseURL}/nashvilleBreweries/.json?auth=${idToken}`
                             }).then(response => {
                                 const data = response.data
 

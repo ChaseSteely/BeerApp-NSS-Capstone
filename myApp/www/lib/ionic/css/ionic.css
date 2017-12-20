@@ -2993,8 +2993,8 @@ a.subdued {
 .tab-item .icon {
   display: block;
   margin: 0 auto;
-  height: 32px;
-  font-size: 32px; }
+  height: 30px;
+  font-size: 30px; }
 
 .tabs-icon-left .tab-item, .tabs-icon-right .tab-item {
   font-size: 12px; }
