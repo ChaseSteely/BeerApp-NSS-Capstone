@@ -1,5 +1,5 @@
 angular.module('BeerApp')
-    .factory('BeerFactory', function ($http, AuthFactory, Firebase_Config, Untappd) {
+    .factory('BeerFactory', function ($http, AuthFactory, Firebase_Config, Untappd, Eventbrite) {
         return Object.create(null, {
             "cache": {
                 value: null,
@@ -40,6 +40,16 @@ angular.module('BeerApp')
                     return $http({
                         method: "GET",
                         url: `https://api.untappd.com/v4/search/brewery/?q=${query}&client_id=${Untappd.clientID}&client_secret=${Untappd.clientSecret}`,
+                    }).then(response => {
+                        return response.data.response
+                    })
+                }
+            },
+            "getEvents": {
+                value: function () {
+                    return $http({
+                        method: "GET",
+                        url: `https://www.eventbriteapi.com/v3/events/search/?q="beer"&sort_by"date"&location.address="Nashville,TN"&location.within="40mi"&token=${Eventbrite.appKey}`,
                     }).then(response => {
                         return response.data.response
                     })
