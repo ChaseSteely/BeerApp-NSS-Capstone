@@ -109,6 +109,10 @@ padding-top: 10px;
     display: block;
 }
 
+.eventLogo {
+ width: 99%;
+}
+
 
 p, .noBorder {
   border-style: none;

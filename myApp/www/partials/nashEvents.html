@@ -1,13 +1,36 @@
 <ion-view title="Nashville Events">
-    <ion-content class="padding">
-        <h1>events</h1>
-        <div ng-repeat="event in events" class="list card padding">
+    <ion-content class="padding has-tabs-top">
+            <div class="list list-inset">
+                    <label class="item item-input">
+                        <input type="text" placeholder="name" ng-model="events.name" autofocus>
+                    </label>
+                    <label class="item item-input">
+                        <input type="text" placeholder="venue" ng-model="events.venue" >
+                    </label>
+                    <label class="item item-input">
+                        <input type="datetime-local" placeholder="time" ng-model="events.date">
+                    </label>
+                    <label class="item item-input">
+                        <input type="text" placeholder="description" ng-model="events.description">
+                    </label>
+                    <label class="item item-input">
+                        <input type="text" placeholder="image" ng-model="events.photoURL">
+                    </label>
+                    <label class="item item-input">
+                        <input type="text" placeholder="address" ng-model="events.address">
+                    </label>
+                    <button class="button button-block button-positive" ng-click="createEvent()">Event</button>
+                </div>
+        
+        <!-- <div ng-repeat="event in events.events" class="list card padding">
             <div class="item item-body">
-                <!-- <img class="beerLogo" ng-src="{{ brewery.brewery.brewery_label | trusted}}"> -->
-                <!-- <h4 class="text-center">{{ beer.beer.beer_name }}</h4> -->
-                <!-- <h4 class="text-center">{{ brewery.brewery.brewery_name}}</h4>
-                    <button id="{{ brewery.brewery.brewery_id }}" class="button button-block button-positive" ng-click="showInfo($event)">Show Brewery Info</button> -->
-            </div>
-        </div>
+                <img class="eventLogo" ng-src="{{ event.logo.url | trusted}}">
+                <h4 class="text-center">{{ event.start.local | date : 'MM/dd/yyyy @ h:mma' }}</h4>
+                <h4 class="text-center">{{ event.name.text }}</h4>
+                <h4 class="text-center">{{ event.description.text }}</h4> -->
+               
+                    <!-- <button id="{{ brewery.brewery.brewery_id }}" class="button button-block button-positive" ng-click="showInfo($event)">Show Brewery Info</button> -->
+            <!-- </div>
+        </div> -->
     </ion-content>
 </ion-view>

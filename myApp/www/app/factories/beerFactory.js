@@ -1,5 +1,5 @@
 angular.module('BeerApp')
-    .factory('BeerFactory', function ($http, AuthFactory, Firebase_Config, Untappd, Eventbrite) {
+    .factory('BeerFactory', function ($http, AuthFactory, Firebase_Config, Untappd) {
         return Object.create(null, {
             "cache": {
                 value: null,
@@ -29,7 +29,7 @@ angular.module('BeerApp')
                 value: function (breweryID) {
                     return $http({
                         method: "GET",
-                        url: `https://api.untappd.com/v4/brewery/info/${breweryID}?client_id=${Untappd.clientID}&client_secret=${Untappd.clientSecret}&compact="true"`,
+                        url: `https://api.untappd.com/v4/brewery/info/${breweryID}?client_id=${Untappd.clientID}&client_secret=${Untappd.clientSecret}`,
                     }).then(response => {
                         return response.data.response
                     })
@@ -40,16 +40,6 @@ angular.module('BeerApp')
                     return $http({
                         method: "GET",
                         url: `https://api.untappd.com/v4/search/brewery/?q=${query}&client_id=${Untappd.clientID}&client_secret=${Untappd.clientSecret}`,
-                    }).then(response => {
-                        return response.data.response
-                    })
-                }
-            },
-            "getEvents": {
-                value: function () {
-                    return $http({
-                        method: "GET",
-                        url: `https://www.eventbriteapi.com/v3/events/search/?q="beer"&sort_by"date"&location.address="Nashville,TN"&location.within="40mi"&token=${Eventbrite.appKey}`,
                     }).then(response => {
                         return response.data.response
                     })
@@ -171,12 +161,34 @@ angular.module('BeerApp')
 
             },
             "logBrewery": {
-                value: function (entry) {
+                value: function () {
                     return firebase.auth().currentUser.getIdToken(true)
                         .then(idToken => {
                             return $http({
                                 method: "POST",
                                 url: `${Firebase_Config.databaseURL}/loggedBreweries/.json?auth=${idToken}`,
+                                data: {
+                                    "name": $scope.name,
+                                    "venue": $scope.venue,
+                                    "date": $scope.date,
+                                    "photo": $scope.photoURL,
+                                    "address": $scope.address,
+                                    "description": $scope.description
+                                }
+
+                            })
+                        })
+
+                }
+
+            },
+            "postEvent": {
+                value: function (entry) {
+                    return firebase.auth().currentUser.getIdToken(true)
+                        .then(idToken => {
+                            return $http({
+                                method: "POST",
+                                url: `${Firebase_Config.databaseURL}/events/.json?auth=${idToken}`,
                                 data: entry
 
                             })
