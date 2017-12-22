@@ -65,6 +65,25 @@ angular.module('BeerApp')
                         })
                 }
             },
+            "getEvents": {
+                value: function () {
+                    return firebase.auth().currentUser.getIdToken(true)
+                        .then(idToken => {
+                            return $http({
+                                method: "GET",
+                                url: `${Firebase_Config.databaseURL}/events/.json?auth=${idToken}`
+                            }).then(response => {
+                                const data = response.data
+
+                                this.cache = Object.keys(data).map(key => {
+                                    data[key].id = key
+                                    return data[key]
+                                })
+                                return this.cache
+                            })
+                        })
+                }
+            },
             "getLoggedBeers": {
                 value: function (id) {
                     return firebase.auth().currentUser.getIdToken(true)
@@ -110,7 +129,7 @@ angular.module('BeerApp')
                     return firebase.auth().currentUser.getIdToken(true)
                     return $http({
                         method: "GET",
-                        url: `${Firebase_Config.databaseURL}/breweries/${key}/.json?auth=${idToken}`
+                        url: `${Firebase_Config.databaseURL}/events/${key}/.json?auth=${idToken}`
                     }).then(response => {
                         return response.data
                     })
@@ -161,21 +180,13 @@ angular.module('BeerApp')
 
             },
             "logBrewery": {
-                value: function () {
+                value: function (entry) {
                     return firebase.auth().currentUser.getIdToken(true)
                         .then(idToken => {
                             return $http({
                                 method: "POST",
                                 url: `${Firebase_Config.databaseURL}/loggedBreweries/.json?auth=${idToken}`,
-                                data: {
-                                    "name": $scope.name,
-                                    "venue": $scope.venue,
-                                    "date": $scope.date,
-                                    "photo": $scope.photoURL,
-                                    "address": $scope.address,
-                                    "description": $scope.description
-                                }
-
+                                data: entry
                             })
                         })
 
@@ -189,6 +200,20 @@ angular.module('BeerApp')
                             return $http({
                                 method: "POST",
                                 url: `${Firebase_Config.databaseURL}/events/.json?auth=${idToken}`,
+                                data: entry
+
+                            })
+                        })
+
+                }
+            },
+            "logEvent": {
+                value: function (entry) {
+                    return firebase.auth().currentUser.getIdToken(true)
+                        .then(idToken => {
+                            return $http({
+                                method: "POST",
+                                url: `${Firebase_Config.databaseURL}/savedEvents/.json?auth=${idToken}`,
                                 data: entry
 
                             })

@@ -32,7 +32,7 @@ angular
                     console.log()
                 }, 100)
                 $scope.brewLog = {
-                 "data": data,
+                 "brewery": data,
                  "dateLogged": Date.now(),
                  "uid": firebase.auth().currentUser.uid,
                  "visited": true
