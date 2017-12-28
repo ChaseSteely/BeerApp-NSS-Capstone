@@ -21,6 +21,10 @@ h1, .tab-title, .button {
   padding-bottom: 0px;
 }
 
+cancelBTN {
+  padding-bottom: 25px;
+}
+
 .dashP {
   padding-top: 5px;
   padding-bottom: 5px;
@@ -85,10 +89,14 @@ padding-top: 10px;
 
 #profile-image {
   display: block;
-  border-radius: 100px;
-  width: 200px;
+  /* width: 200px;
   height: 200px;
-  margin: 0px auto 0;
+  margin: 0px auto 0; */
+  object-fit: contain;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
   padding-bottom: 10px;
 }
 

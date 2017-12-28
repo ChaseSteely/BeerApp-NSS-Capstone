@@ -1,0 +1,20 @@
+<ion-modal-view class="modal">
+    <ion-content class="padding">
+        <div class="list list-inset">
+            <label class="item item-input">
+                <input type="email" placeholder="Email address" ng-model="auth.email" autofocus>
+            </label>
+            <label class="item item-input">
+                <input type="password" placeholder="Password" ng-model="auth.password">
+            </label>
+            <label class="item item-input">
+                <input type="text" placeholder="User Name" ng-model="auth.displayName;">
+            </label>
+            <label class="item item-input">
+                <input type="text" placeholder="Profile Photo (1 Right-click photo. 2) Copy image address" ng-model="auth.photoURL;">
+            </label>
+            <button class="button button-block button-positive" ng-click="reg(auth)">Sign Up</button>
+        </div>
+        <button class="button cancelBTN button-block button-positive" ng-click="hideModal()">Cancel</button>
+    </ion-content>
+</ion-modal-view>
