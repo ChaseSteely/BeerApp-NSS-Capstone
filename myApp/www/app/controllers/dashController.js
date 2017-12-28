@@ -60,7 +60,6 @@ angular.module('BeerApp')
         $scope.getWishList = function () {
             $scope.beers = []
             $scope.breweries = []
-            $scope.map = {}
             $scope.events = []
             drinker = AuthFactory.getUser().uid
             BeerFactory.getLoggedBeers(drinker).then(data => {
@@ -75,7 +74,6 @@ angular.module('BeerApp')
         $scope.getEventList = function () {
             $scope.beers = []
             $scope.breweries = []
-            $scope.map = {}
             $scope.wishes = []
             drinker = AuthFactory.getUser().uid
             BeerFactory.getUserEvents(drinker).then(data => {
@@ -121,7 +119,7 @@ angular.module('BeerApp')
                     $scope.markers = data;
                     for (let i = 0; i < data.length; i++) {
                         markerEl = data[i];
-                        markerSpot = new google.maps.LatLng(markerEl.data.brewery.location.brewery_lat, markerEl.data.brewery.location.brewery_lng);
+                        markerSpot = new google.maps.LatLng(markerEl.brewery.brewery.location.brewery_lat, markerEl.brewery.brewery.location.brewery_lng);
                         // Add the markerto the map
                         let mk = new google.maps.Marker({
                             animation: google.maps.Animation.DROP,
@@ -130,8 +128,8 @@ angular.module('BeerApp')
                         });
 
                         windowContent =
-                            "<h4>" + markerEl.data.brewery.brewery_name + "</h4>" +
-                            '<a href="' + markerEl.data.brewery.contact.url + '"target="_blank">' + markerEl.data.brewery.contact.url + "</a>";
+                            "<h4>" + markerEl.brewery.brewery.brewery_name + "</h4>" +
+                            '<a href="' + markerEl.brewery.brewery.contact.url + '"target="_blank">' + markerEl.brewery.brewery.contact.url + "</a>";
 
 
                         mk.addListener('click', function () {
