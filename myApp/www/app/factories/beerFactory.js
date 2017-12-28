@@ -84,6 +84,26 @@ angular.module('BeerApp')
                         })
                 }
             },
+            "getUserEvents": {
+                value: function (id) {
+                    return firebase.auth().currentUser.getIdToken(true)
+                        .then(idToken => {
+                            return $http({
+                                method: "GET",
+                                url: `${Firebase_Config.databaseURL}/savedEvents/.json?auth=${idToken}&orderBy="uid"&equalTo="${id}"`
+                            }).then(response => {
+                                const data = response.data
+
+                                this.cache = Object.keys(data).map(key => {
+                                    data[key].id = key
+                                    return data[key]
+                                })
+                                
+                                return this.cache
+                            })
+                        })
+                }
+            },
             "getLoggedBeers": {
                 value: function (id) {
                     return firebase.auth().currentUser.getIdToken(true)
@@ -124,7 +144,7 @@ angular.module('BeerApp')
                         })
                 }
             },
-            "single": {
+            "getSingleEvent": {
                 value: function (key) {
                     return firebase.auth().currentUser.getIdToken(true)
                     return $http({

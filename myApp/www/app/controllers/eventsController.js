@@ -43,14 +43,12 @@ angular.module('BeerApp')
                 $timeout(function () {
                     console.log()
                 }, 100)
-                data.filter(e => e.id === eID)
-                console.log(data)
+               newData = data.filter(e => e.id === eID)
+                console.log(newData)
                 $scope.eventLog = {
-                    "data": data.filter(e => e.id === eID),
-                    "saved": true,
+                    "data": newData,
                     "uid": firebase.auth().currentUser.uid
                 }
-
                 eLog = $scope.eventLog
                 console.log(eLog)
                 BeerFactory.logEvent(eLog)

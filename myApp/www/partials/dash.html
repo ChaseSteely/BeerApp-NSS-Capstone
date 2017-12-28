@@ -29,6 +29,9 @@
                 <a class="tab-item noBorder" ng-click="showVisited()">
                   <i class="icon ion-earth" style="color: #FF8200"></i>
                 </a>
+                <a class="tab-item noBorder" ng-click="getEventList()">
+                  <i class="icon ion-calendar" style="color: #FF8200"></i>
+                </a>
               </div>
             </div>
       </ion-item>
@@ -57,5 +60,14 @@
           <h4 class="text-center">Rating: {{ brewery.data.brewery.rating.rating_score.toFixed(2) }}/5</h4>
       </div>
     </div>
+    <div ng-repeat="evnt in events | orderBy : 'date'" class="list card padding">
+      <div class="item item-body">
+          <h4 class="text-center">{{ evnt.data.0.date | date : 'MM/dd/yyyy @ h:mma' }}</h4>
+          <h4 class="text-center">{{ evnt.data.0.name }}</h4>
+          <h4 class="text-center">{{ evnt.data.0.venue }}</h4>
+          <h4 class="text-center">{{ evnt.data.0.address }}</h4>
+          <h4 class="text-center">{{ evnt.data.0.description }}</h4>
+     </div>
+  </div>
   </ion-content>
 </ion-view>

@@ -6,6 +6,7 @@ angular.module('BeerApp')
         $scope.beers = []
         $scope.breweries = []
         $scope.wishes = []
+        $scope.events = []
 
          //Ionic code needed to show and close Modal
          $ionicModal.fromTemplateUrl('../../partials/mapModal.html', {
@@ -44,6 +45,7 @@ angular.module('BeerApp')
         $scope.getBeerLog = function () {
             $scope.wishes = []
             $scope.breweries = []
+            $scope.events = []
             drinker = AuthFactory.getUser().uid
             BeerFactory.getLoggedBeers(drinker).then(data => {
                 $timeout(function () {
@@ -59,6 +61,7 @@ angular.module('BeerApp')
             $scope.beers = []
             $scope.breweries = []
             $scope.map = {}
+            $scope.events = []
             drinker = AuthFactory.getUser().uid
             BeerFactory.getLoggedBeers(drinker).then(data => {
                 $timeout(function () {
@@ -69,9 +72,25 @@ angular.module('BeerApp')
             })
         }
 
+        $scope.getEventList = function () {
+            $scope.beers = []
+            $scope.breweries = []
+            $scope.map = {}
+            $scope.wishes = []
+            drinker = AuthFactory.getUser().uid
+            BeerFactory.getUserEvents(drinker).then(data => {
+                $timeout(function () {
+                    console.log()
+                }, 100)
+                $scope.events = data
+                console.log($scope.events)
+            })
+        }
+
         $scope.getBreweryLog = function () {
             $scope.wishes = []
             $scope.beers = []
+            $scope.events = []
             drinker = AuthFactory.getUser().uid
             BeerFactory.getLoggedBreweries(drinker).then(data => {
                 $timeout(function () {
