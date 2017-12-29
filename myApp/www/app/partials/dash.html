@@ -1,10 +1,9 @@
-<ion-view title={{name}}>
-  <ion-content>
+<ion-view title="HOME">
       <ion-item class="dashProfile">
         <!-- profile photo -->
         <img id="profile-image" src="{{photo || 'https://i.pinimg.com/originals/e7/2d/10/e72d1042a2bda49f865367aac47f7ce5.jpg'}}" ui-sref-opts="{reload: true}">
-        <!-- profile bio -->
-          <p class="dashP noBorder text-center">Copper mug vinyl disrupt, craft beer cleanse</p>
+        <!-- User Name -->
+          <p class="dashP noBorder text-center">{{ name }}</p>
 
           <!-- tabs to navigate profile -->
           <div id="dashTabs" class="tabs-striped noBorder">
@@ -24,7 +23,7 @@
                 </a>
 
                 <!-- wishlist -->
-                <a class="tab-item noBorder" ng-click="getWishList()">
+                <a class="tab-item noBorder" ui-sref="tab.dash.wishlist">
                     <span class="myIcon icon-pint-of-beer"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span><span class="path9"></span><span class="path10"></span><span class="path11"></span><span class="path12"></span><span class="path13"></span><span class="path14"></span><span class="path15"></span><span class="path16"></span><span class="path17"></span><span class="path18"></span></span>
                     <ion-badge badge-font-size="2.5em" id="notifications-badge" ui-sref-opts="{reload: true, inherit: false}">{{ wCount }}</ion-badge>
                 </a>
@@ -33,31 +32,15 @@
                 <a class="tab-item noBorder" ng-click="showVisited()">
                     <span class="myIcon icon-map"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span><span class="path9"></span></span>
                 </a>
+
+                <!-- event list -->
                 <a class="tab-item noBorder" ng-click="getEventList()" title="By Elegant Themes [GPL (http://www.gnu.org/licenses/gpl.html)], via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File%3ACircle-icons-calendar.svg"><img width="36" alt="Circle-icons-calendar" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Circle-icons-calendar.svg/32px-Circle-icons-calendar.svg.png"/>
                   <ion-badge badge-font-size="2.5em" id="notifications-badge" ui-sref-opts="{reload: true, inherit: false}">{{ eCount }}</ion-badge>
                 </a>
               </div>
             </div>
       </ion-item>
-      <div class="list">
-        <label class="item item-input item-floating-label">
-          <input class="text-center" type="text" ng-model="query" placeholder="search">
-        </label>
-    <div ng-repeat="beer in beers | filter: query | filter: {wishlist: false}:true | orderBy : '-dateLogged'" class="list card padding">
-      <div class="item item-body">
-          <img class="beerLogo searchPhoto" ng-src="{{ beer.url  || '../img/beer.jpg' }}">
-          <h4 class="text-center">{{ beer.data.beer.beer_name }}</h4>
-          <h4 class="text-center">{{ beer.data.beer.beer_style }}</h4>
-          <h4 class="text-center">Rating: {{ beer.rating }}</h4>
-      </div>
-    </div>
-    <div ng-repeat="wish in wishes | filter: query | filter: {wishlist: true}:true | orderBy : '-dateLogged'" class="list card padding">
-      <div class="item item-body">
-          <img class="beerLogo" ng-src="{{ wish.data.beer.beer_label | trusted}}">
-          <h4 class="text-center">{{ wish.data.beer.beer_name }}</h4>
-          <h4 class="text-center">{{ wish.data.beer.beer_style }}</h4>
-      </div>
-    </div>
+      
     <div ng-repeat="brewery in breweries | filter: query | orderBy : '-dateLogged'" class="list card padding">
       <div class="item item-body">
           <img class="beerLogo" ng-src="{{ brewery.brewery.brewery.brewery_label | trusted}}">
@@ -78,5 +61,6 @@
           <button class="button button-block button-positive" ng-click="deleteEvent(evnt.id)">Delete Event</button>
      </div>
   </div>
-  </ion-content>
+
+  <ui-view name="dash-page"></ui-view>
 </ion-view>

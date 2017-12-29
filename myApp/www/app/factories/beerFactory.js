@@ -176,23 +176,15 @@ angular.module('BeerApp')
                     })
                 }
             },
-            "find": {
-                value: function (searchString) {
-                    const result = this.cache.find(emp => {
-                        return emp.firstName.includes(searchString) ||
-                            emp.lastName.includes(searchString)
-                    })
-                    return result
-                }
-            },
-            "fire": {
-                value: function (placeHolder, key) {
-                    placeHolder.employmentEnd = Date.now()
-
-                    return $http({
-                        method: "PUT",
-                        url: `${Firebase_Config.databaseURL}/breweries/${key}/.json?auth=${idToken}`,
-                        data: placeHolder
+            "wishGranted": {
+                value: function (placeholder, key, target) {
+                    return firebase.auth().currentUser.getIdToken(true)
+                    .then(idToken => {
+                        return $http({
+                            method: "PUT",
+                            url: `${Firebase_Config.databaseURL}/loggedBeer/${key}/${target}/.json?auth=${idToken}`,
+                            data: placeholder
+                        })
                     })
                 }
             },
@@ -204,12 +196,9 @@ angular.module('BeerApp')
                                 method: "POST",
                                 url: `${Firebase_Config.databaseURL}/loggedBeer/.json?auth=${idToken}`,
                                 data: entry
-
                             })
                         })
-
                 }
-
             },
             "logBrewery": {
                 value: function (entry) {

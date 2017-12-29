@@ -16,7 +16,6 @@ h1, .tab-title, .button {
   font-family: 'Josefin Slab:700', serif;
  font-weight: bold;
 }
-
 .dashProfile {
   padding-bottom: 0px;
 }
@@ -66,12 +65,14 @@ h1, .tab-title, .button {
   width: 275px;
   height: 325px;
 }
+
 .map {
   display: block;
   width: 100%;
   height: 91%;
   top: 50px;
 }
+
 .mapDash {
   display: block;
   width: 100%;
@@ -124,6 +125,11 @@ padding-top: 10px;
 p, .noBorder {
   border-style: none;
   border: 0px;
+}
+
+.dashBeers {
+  padding-top: 250px;
+  padding-bottom: 250px;
 }
 
 .icon-icon_growler .path1:before {

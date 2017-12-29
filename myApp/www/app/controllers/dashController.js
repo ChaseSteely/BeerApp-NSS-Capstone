@@ -71,35 +71,6 @@ angular.module('BeerApp')
             })
         }//END loadDash
 
-        //get beers logged by current User on tab click
-        $scope.getBeerLog = function () {
-            $scope.wishes = []
-            $scope.breweries = []
-            $scope.events = []
-            drinker = AuthFactory.getUser().uid
-            BeerFactory.getLoggedBeers(drinker).then(data => {
-                $timeout(function () {
-                    console.log()
-                }, 100)
-                $scope.beers = data
-                console.log($scope.beers)
-            })
-        }
-
-        $scope.getWishList = function () {
-            $scope.beers = []
-            $scope.breweries = []
-            $scope.events = []
-            drinker = AuthFactory.getUser().uid
-            BeerFactory.getLoggedBeers(drinker).then(data => {
-                $timeout(function () {
-                    console.log()
-                }, 100)
-                $scope.wishes = data
-                console.log($scope.wishes)
-            })
-        }
-
         $scope.getEventList = function () {
             $scope.beers = []
             $scope.breweries = []

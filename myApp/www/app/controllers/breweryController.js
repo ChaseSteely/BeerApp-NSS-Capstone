@@ -11,7 +11,7 @@ angular
         $scope.query = ""
 
         //Ionic code needed to show and close Modal
-        $ionicModal.fromTemplateUrl('../../partials/breweryInfoModal.html', {
+        $ionicModal.fromTemplateUrl('./app/partials/breweryInfoModal.html', {
             scope: $scope,
             animation: 'slide-in-up',
             focusFirstInput: true

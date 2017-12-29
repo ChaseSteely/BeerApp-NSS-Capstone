@@ -44,12 +44,9 @@ angular
                     "dateLogged": Date.now(),
                     "uid": firebase.auth().currentUser.uid
                 }
-
                 bLog = $scope.beerLog
                 BeerFactory.logBeer(bLog)
-
             })
-
         }
 
         $scope.addWishlist = function (event) {
@@ -62,18 +59,14 @@ angular
 
                 $scope.beerLog = {
                     "data": data,
-                    "url": $scope.downloadURL,
                     "rating": $scope.myRating,
                     "wishlist": true,
                     "dateLogged": Date.now(),
                     "uid": firebase.auth().currentUser.uid
                 }
-
                 bLog = $scope.beerLog
                 BeerFactory.logBeer(bLog)
-
             })
-
         }
 
         // $scope.showToast = function(message) {
