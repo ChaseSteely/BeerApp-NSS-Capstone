@@ -155,12 +155,14 @@ angular.module('BeerApp')
                     })
                 }
             },
-            "murder": {
+            "byeByeEvent": {
                 value: function (key) {
                     return firebase.auth().currentUser.getIdToken(true)
-                    return $http({
-                        method: "DELETE",
-                        url: `${Firebase_Config.databaseURL}/breweries/${key}/.json?auth=${idToken}`
+                    .then(idToken => {
+                        return $http({
+                            method: "DELETE",
+                            url: `${Firebase_Config.databaseURL}/savedEvents/${key}/.json?auth=${idToken}`
+                        })
                     })
                 }
             },

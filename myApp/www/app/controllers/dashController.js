@@ -3,6 +3,9 @@ angular.module('BeerApp')
         $scope.name = ""
         $scope.photo = ""
         $scope.count = 0
+        $scope.eCount = 0
+        $scope.bCount = 0
+        $scope.wCount = 0
         $scope.beers = []
         $scope.breweries = []
         $scope.wishes = []
@@ -32,12 +35,39 @@ angular.module('BeerApp')
             drinker = AuthFactory.getUser()
             $scope.name = drinker.displayName
             $scope.photo = drinker.photoURL
+            //get beer count
             BeerFactory.getLoggedBeers(drinker.uid).then(data => {
                 $timeout(function () {
                     console.log()
                 }, 100)
-                $scope.count = data.length
-                console.log($scope.count)
+                result = data.filter(b => b.wishlist === false)
+                $scope.count = result.length
+                console.log("beer count", $scope.count)
+            })
+            //get brewery count
+            BeerFactory.getLoggedBreweries(drinker.uid).then(data => {
+                $timeout(function () {
+                    console.log()
+                }, 100)
+                $scope.bCount = data.length
+                console.log("brewery count", $scope.bCount)
+            })
+            //get wishlist count
+            BeerFactory.getLoggedBeers(drinker.uid).then(data => {
+                $timeout(function () {
+                    console.log()
+                }, 100)
+                result = data.filter(w => w.wishlist === true)
+                $scope.wCount = result.length
+                console.log("wishlist count", $scope.wCount)
+            })
+            //get event count
+            BeerFactory.getUserEvents(drinker.uid).then(data => {
+                $timeout(function () {
+                    console.log()
+                }, 100)
+                $scope.eCount = data.length
+                console.log("event count", $scope.eCount)
             })
         }//END loadDash
 
@@ -51,7 +81,6 @@ angular.module('BeerApp')
                 $timeout(function () {
                     console.log()
                 }, 100)
-                $scope.count = data.length
                 $scope.beers = data
                 console.log($scope.beers)
             })
@@ -97,6 +126,14 @@ angular.module('BeerApp')
                 $scope.breweries = data
                 console.log($scope.breweries)
             })
+        }
+
+        $scope.deleteEvent = function (id) {
+            console.log("deleting", id)
+            BeerFactory.byeByeEvent(id)
+            let eventEl = document.getElementById(id)
+            eventEl.parentNode.removeChild(eventEl)
+            // $scope.getEventList()
         }
 
         $scope.showVisited = function () {
