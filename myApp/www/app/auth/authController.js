@@ -3,7 +3,7 @@ angular.module("BeerApp")
         $scope.auth = {}
 
         //Ionic code needed to show and close Modal
-        $ionicModal.fromTemplateUrl('../../partials/registerModal.html', {
+        $ionicModal.fromTemplateUrl('./app/auth/registerModal.html', {
             scope: $scope,
             animation: 'slide-in-up',
             focusFirstInput: true
@@ -14,7 +14,7 @@ angular.module("BeerApp")
         $scope.openModal = function () {
             $timeout(function(){
                 $scope.modal.show(); 
-                },0)
+                },100)
         };
 
         $scope.logoutUser = function () {

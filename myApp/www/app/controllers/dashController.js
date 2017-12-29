@@ -12,7 +12,7 @@ angular.module('BeerApp')
         $scope.events = []
 
          //Ionic code needed to show and close Modal
-         $ionicModal.fromTemplateUrl('../../partials/mapModal.html', {
+         $ionicModal.fromTemplateUrl('./app/partials/mapModal.html', {
             scope: $scope,
             animation: 'slide-in-up',
             focusFirstInput: true
