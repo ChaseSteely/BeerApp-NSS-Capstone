@@ -9,6 +9,7 @@
                 <h4 class="text-center">{{ pub.venue.venue_name }}</h4>
                 <h4 class="text-center">{{ pub.venue.location.venue_address }}</h4>
                 <h4 class="text-center">{{ pub.venue.location.venue_city }}, {{ pub.venue.location.venue_state }}</h4>
+                <button id="{{ pub.beer.bid }}" class="button button-block button-positive" ng-click="addWishlist($event); showToast($scope.msg)">Add To Wishlist</button>
             </div>
         </div>
     </ion-content>

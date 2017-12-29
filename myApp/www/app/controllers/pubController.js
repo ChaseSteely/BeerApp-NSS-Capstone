@@ -10,6 +10,36 @@ angular.module('BeerApp')
                 console.log($scope.pubs)
             })
         }
+        // Add beer to wishlist
+        $scope.addWishlist = function (event) {
+            let bID = parseInt(event.target.id)
+            console.log(bID)
+            BeerFactory.beerMe(bID).then(data => {
+                $timeout(function () {
+                    console.log()
+                }, 100)
+
+                $scope.beerLog = {
+                    "data": data,
+                    "wishlist": true,
+                    "dateLogged": Date.now(),
+                    "uid": firebase.auth().currentUser.uid
+                }
+
+                bLog = $scope.beerLog
+                BeerFactory.logBeer(bLog)
+
+            })
+
+        }
+
+         // $scope.showToast = function(message) {
+        //     if (window.plugins && window.plugins.toast) {
+        //         window.plugins.toast.showLongCenter("Cheers");
+        //     }
+        //     else $ionicLoading.show({ template: "Cheers", noBackdrop: true, duration: 2000 });
+        // }
+
         //when page loads load the Events
         if (document.readyState === "complete") {
             loadPub()
