@@ -40,7 +40,11 @@
               </div>
             </div>
       </ion-item>
-    <div ng-repeat="beer in beers | filter: {wishlist: false}:true | orderBy : '-dateLogged'" class="list card padding">
+      <div class="list">
+        <label class="item item-input item-floating-label">
+          <input class="text-center" type="text" ng-model="query" placeholder="search">
+        </label>
+    <div ng-repeat="beer in beers | filter: query | filter: {wishlist: false}:true | orderBy : '-dateLogged'" class="list card padding">
       <div class="item item-body">
           <img class="beerLogo searchPhoto" ng-src="{{ beer.url  || '../img/beer.jpg' }}">
           <h4 class="text-center">{{ beer.data.beer.beer_name }}</h4>
@@ -48,14 +52,14 @@
           <h4 class="text-center">Rating: {{ beer.rating }}</h4>
       </div>
     </div>
-    <div ng-repeat="wish in wishes | filter: {wishlist: true}:true | orderBy : '-dateLogged'" class="list card padding">
+    <div ng-repeat="wish in wishes | filter: query | filter: {wishlist: true}:true | orderBy : '-dateLogged'" class="list card padding">
       <div class="item item-body">
           <img class="beerLogo" ng-src="{{ wish.data.beer.beer_label | trusted}}">
           <h4 class="text-center">{{ wish.data.beer.beer_name }}</h4>
           <h4 class="text-center">{{ wish.data.beer.beer_style }}</h4>
       </div>
     </div>
-    <div ng-repeat="brewery in breweries | orderBy : '-dateLogged'" class="list card padding">
+    <div ng-repeat="brewery in breweries | filter: query | orderBy : '-dateLogged'" class="list card padding">
       <div class="item item-body">
           <img class="beerLogo" ng-src="{{ brewery.brewery.brewery.brewery_label | trusted}}">
           <h4 class="text-center">{{ brewery.brewery.brewery.brewery_name }}</h4>
@@ -65,7 +69,7 @@
           <h4 class="text-center">Rating: {{ brewery.brewery.brewery.rating.rating_score.toFixed(2) }}/5</h4>
       </div>
     </div>
-    <div ng-repeat="evnt in events | orderBy : 'date'" class="list card padding">
+    <div ng-repeat="evnt in events | filter: query | orderBy : 'date'" class="list card padding">
       <div id="{{evnt.id}}"class="item item-body">
           <h4 class="text-center">{{ evnt.data.0.date | date : 'MM/dd/yyyy @ h:mma' }}</h4>
           <h4 class="text-center">{{ evnt.data.0.name }}</h4>
