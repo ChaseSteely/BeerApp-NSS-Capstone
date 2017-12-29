@@ -25,6 +25,16 @@ angular.module('BeerApp')
                     })
                 }
             },
+            "pub": {
+                value: function () {
+                    return $http({
+                        method: "GET",
+                        url: `https://api.untappd.com/v4/thepub/local/?lat=36.1&lng=-86.7&client_id=${Untappd.clientID}&client_secret=${Untappd.clientSecret}`,
+                    }).then(response => {
+                        return response.data.response
+                    })
+                }
+            },
             "visitBrewery": {
                 value: function (breweryID) {
                     return $http({

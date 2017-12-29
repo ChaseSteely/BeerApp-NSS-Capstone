@@ -21,7 +21,11 @@ h1, .tab-title, .button {
   padding-bottom: 0px;
 }
 
-cancelBTN {
+.bottomTabs {
+  padding-top: 10px;
+}
+
+.cancelBTN {
   padding-bottom: 25px;
 }
 
