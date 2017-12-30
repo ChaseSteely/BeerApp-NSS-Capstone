@@ -17,7 +17,7 @@
                 </a>
 
                 <!-- brewery log -->
-                <a class="tab-item noBorder" ng-click="getBreweryLog()">
+                <a class="tab-item noBorder" ui-sref="tab.dash.brewery">
                     <span class="myIcon icon-keg"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span><span class="path9"></span><span class="path10"></span><span class="path11"></span><span class="path12"></span></span>
                     <ion-badge badge-font-size="2.5em" id="notifications-badge" ui-sref-opts="{reload: true, inherit: false}">{{ bCount }}</ion-badge>
                 </a>
@@ -34,33 +34,12 @@
                 </a>
 
                 <!-- event list -->
-                <a class="tab-item noBorder" ng-click="getEventList()" title="By Elegant Themes [GPL (http://www.gnu.org/licenses/gpl.html)], via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File%3ACircle-icons-calendar.svg"><img width="36" alt="Circle-icons-calendar" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Circle-icons-calendar.svg/32px-Circle-icons-calendar.svg.png"/>
+                <a class="tab-item noBorder" ui-sref="tab.dash.events" title="By Elegant Themes [GPL (http://www.gnu.org/licenses/gpl.html)], via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File%3ACircle-icons-calendar.svg"><img width="36" alt="Circle-icons-calendar" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Circle-icons-calendar.svg/32px-Circle-icons-calendar.svg.png"/>
                   <ion-badge badge-font-size="2.5em" id="notifications-badge" ui-sref-opts="{reload: true, inherit: false}">{{ eCount }}</ion-badge>
                 </a>
               </div>
             </div>
       </ion-item>
-      
-    <div ng-repeat="brewery in breweries | filter: query | orderBy : '-dateLogged'" class="list card padding">
-      <div class="item item-body">
-          <img class="beerLogo" ng-src="{{ brewery.brewery.brewery.brewery_label | trusted}}">
-          <h4 class="text-center">{{ brewery.brewery.brewery.brewery_name }}</h4>
-          <h4 class="text-center">{{ brewery.brewery.brewery.brewery_type }}</h4>
-          <h4 class="text-center">{{ brewery.brewery.brewery.location.brewery_address }}</h4>
-          <h4 class="text-center">{{ brewery.brewery.brewery.location.brewery_city }}, {{ brewery.data.brewery.location.brewery_state }}</h4>
-          <h4 class="text-center">Rating: {{ brewery.brewery.brewery.rating.rating_score.toFixed(2) }}/5</h4>
-      </div>
-    </div>
-    <div ng-repeat="evnt in events | filter: query | orderBy : 'date'" class="list card padding">
-      <div id="{{evnt.id}}"class="item item-body">
-          <h4 class="text-center">{{ evnt.data.0.date | date : 'MM/dd/yyyy @ h:mma' }}</h4>
-          <h4 class="text-center">{{ evnt.data.0.name }}</h4>
-          <h4 class="text-center">{{ evnt.data.0.venue }}</h4>
-          <h4 class="text-center">{{ evnt.data.0.address }}</h4>
-          <h4 class="text-center">{{ evnt.data.0.description }}</h4>
-          <button class="button button-block button-positive" ng-click="deleteEvent(evnt.id)">Delete Event</button>
-     </div>
-  </div>
 
   <ui-view name="dash-page"></ui-view>
 </ion-view>

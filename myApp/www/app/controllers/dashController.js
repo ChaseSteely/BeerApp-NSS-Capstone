@@ -6,10 +6,6 @@ angular.module('BeerApp')
         $scope.eCount = 0
         $scope.bCount = 0
         $scope.wCount = 0
-        $scope.beers = []
-        $scope.breweries = []
-        $scope.wishes = []
-        $scope.events = []
 
          //Ionic code needed to show and close Modal
          $ionicModal.fromTemplateUrl('./app/partials/mapModal.html', {
@@ -71,41 +67,7 @@ angular.module('BeerApp')
             })
         }//END loadDash
 
-        $scope.getEventList = function () {
-            $scope.beers = []
-            $scope.breweries = []
-            $scope.wishes = []
-            drinker = AuthFactory.getUser().uid
-            BeerFactory.getUserEvents(drinker).then(data => {
-                $timeout(function () {
-                    console.log()
-                }, 100)
-                $scope.events = data
-                console.log($scope.events)
-            })
-        }
-
-        $scope.getBreweryLog = function () {
-            $scope.wishes = []
-            $scope.beers = []
-            $scope.events = []
-            drinker = AuthFactory.getUser().uid
-            BeerFactory.getLoggedBreweries(drinker).then(data => {
-                $timeout(function () {
-                    console.log()
-                }, 100)
-                $scope.breweries = data
-                console.log($scope.breweries)
-            })
-        }
-
-        $scope.deleteEvent = function (id) {
-            console.log("deleting", id)
-            BeerFactory.byeByeEvent(id)
-            let eventEl = document.getElementById(id)
-            eventEl.parentNode.removeChild(eventEl)
-            // $scope.getEventList()
-        }
+        
 
         $scope.showVisited = function () {
             $scope.openModal()
@@ -168,12 +130,7 @@ angular.module('BeerApp')
         //when page loads load the dash
         if (document.readyState === "complete") {
             loadDash()
-            // google.maps.event.addDomListener(window, 'load', $scope.showVisited);
         }
-
-        // function untapAuth() {
-
-        // }
     })
 
     //I have to use this to return the beer and brewery labels from Untappd API

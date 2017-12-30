@@ -1,0 +1,17 @@
+<ion-view title="MY EVENTS">
+    <ion-content class="has-tabs-top dashBeers noBorder" scroll="true" overflow-scroll="true">
+        <label class="item item-input item-floating-label noBorder">
+            <input class="text-center" type="text" ng-model="query" placeholder="search">
+        </label>
+        <div ng-repeat="evnt in events | filter: query | orderBy : 'date'" class="list card padding">
+            <div id="{{evnt.id}}"class="item item-body">
+                <h4 class="text-center">{{ evnt.data.0.date | date : 'MM/dd/yyyy @ h:mma' }}</h4>
+                <h4 class="text-center">{{ evnt.data.0.name }}</h4>
+                <h4 class="text-center">{{ evnt.data.0.venue }}</h4>
+                <h4 class="text-center">{{ evnt.data.0.address }}</h4>
+                <h4 class="text-center">{{ evnt.data.0.description }}</h4>
+                <button class="button button-block button-positive" ng-click="deleteEvent(evnt.id)">Delete Event</button>
+           </div>
+        </div>
+    </ion-content>
+</ion-view>

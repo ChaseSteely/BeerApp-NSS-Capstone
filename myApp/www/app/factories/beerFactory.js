@@ -69,7 +69,6 @@ angular.module('BeerApp')
                                     data[key].id = key
                                     return data[key]
                                 })
-
                                 return this.cache
                             })
                         })
@@ -108,7 +107,6 @@ angular.module('BeerApp')
                                     data[key].id = key
                                     return data[key]
                                 })
-                                
                                 return this.cache
                             })
                         })
@@ -128,7 +126,6 @@ angular.module('BeerApp')
                                     data[key].id = key
                                     return data[key]
                                 })
-
                                 return this.cache
                             })
                         })
@@ -148,7 +145,6 @@ angular.module('BeerApp')
                                     data[key].id = key
                                     return data[key]
                                 })
-
                                 return this.cache
                             })
                         })
@@ -168,24 +164,24 @@ angular.module('BeerApp')
             "byeByeEvent": {
                 value: function (key) {
                     return firebase.auth().currentUser.getIdToken(true)
-                    .then(idToken => {
-                        return $http({
-                            method: "DELETE",
-                            url: `${Firebase_Config.databaseURL}/savedEvents/${key}/.json?auth=${idToken}`
+                        .then(idToken => {
+                            return $http({
+                                method: "DELETE",
+                                url: `${Firebase_Config.databaseURL}/savedEvents/${key}/.json?auth=${idToken}`
+                            })
                         })
-                    })
                 }
             },
             "wishGranted": {
                 value: function (placeholder, key, target) {
                     return firebase.auth().currentUser.getIdToken(true)
-                    .then(idToken => {
-                        return $http({
-                            method: "PUT",
-                            url: `${Firebase_Config.databaseURL}/loggedBeer/${key}/${target}/.json?auth=${idToken}`,
-                            data: placeholder
+                        .then(idToken => {
+                            return $http({
+                                method: "PUT",
+                                url: `${Firebase_Config.databaseURL}/loggedBeer/${key}/${target}/.json?auth=${idToken}`,
+                                data: placeholder
+                            })
                         })
-                    })
                 }
             },
             "logBeer": {
@@ -210,9 +206,7 @@ angular.module('BeerApp')
                                 data: entry
                             })
                         })
-
                 }
-
             },
             "postEvent": {
                 value: function (entry) {
@@ -222,10 +216,8 @@ angular.module('BeerApp')
                                 method: "POST",
                                 url: `${Firebase_Config.databaseURL}/events/.json?auth=${idToken}`,
                                 data: entry
-
                             })
                         })
-
                 }
             },
             "logEvent": {
@@ -236,12 +228,9 @@ angular.module('BeerApp')
                                 method: "POST",
                                 url: `${Firebase_Config.databaseURL}/savedEvents/.json?auth=${idToken}`,
                                 data: entry
-
                             })
                         })
-
                 }
-
-            }
+            }//END logEvent
         })
     })
