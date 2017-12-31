@@ -18,7 +18,7 @@ angular.module('BeerApp')
             BeerFactory.byeByeEvent(id)
             let eventEl = document.getElementById(id)
             eventEl.parentNode.removeChild(eventEl)
-            // $scope.getEventList()
+            $state.reload($state.current.name);
         }
 
          // $scope.showToast = function(message) {

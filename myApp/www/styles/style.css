@@ -112,6 +112,12 @@ padding-top: 10px;
   padding: .9px;
 }
 
+.float-button {
+  position:fixed;
+  right:5px;
+  top:80%;
+  opacity:0.8;
+}
 .beerLogo {
     margin: auto;
     display: block;
@@ -128,8 +134,7 @@ p, .noBorder {
 }
 
 .dashBeers {
-  padding-top: 250px;
-  padding-bottom: 250px;
+  padding-top: 350px;
 }
 
 .icon-icon_growler .path1:before {

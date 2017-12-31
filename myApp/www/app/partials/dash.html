@@ -1,4 +1,5 @@
 <ion-view title="HOME">
+    <ion-content class="noBorder" delegate-handle="mainScroll" >
       <ion-item class="dashProfile">
         <!-- profile photo -->
         <img id="profile-image" src="{{photo || 'https://i.pinimg.com/originals/e7/2d/10/e72d1042a2bda49f865367aac47f7ce5.jpg'}}" ui-sref-opts="{reload: true}">
@@ -6,8 +7,8 @@
           <p class="dashP noBorder text-center">{{ name }}</p>
 
           <!-- tabs to navigate profile -->
-          <div id="dashTabs" class="tabs-striped noBorder">
-              <div class="tabs noBorder dashTabs">
+          <div id="dashTabs" cache-view="false" class="tabs-striped noBorder">
+              <div  cache-view="false"class="tabs noBorder dashTabs">
 
                 <!-- beer log -->
                 <a class="tab-item active noBorder" ui-sref="tab.dash.beers">
@@ -23,9 +24,9 @@
                 </a>
 
                 <!-- wishlist -->
-                <a class="tab-item noBorder" ui-sref="tab.dash.wishlist">
+                <a  cache-view="false" class="tab-item noBorder" ui-sref="tab.dash.wishlist" ui-sref-opts="{reload: true, inherit: false}">
                     <span class="myIcon icon-pint-of-beer"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span><span class="path9"></span><span class="path10"></span><span class="path11"></span><span class="path12"></span><span class="path13"></span><span class="path14"></span><span class="path15"></span><span class="path16"></span><span class="path17"></span><span class="path18"></span></span>
-                    <ion-badge badge-font-size="2.5em" id="notifications-badge" ui-sref-opts="{reload: true, inherit: false}">{{ wCount }}</ion-badge>
+                    <ion-badge cache-view="false" badge-font-size="2.5em" id="notifications-badge" ui-sref-opts="{reload: true, inherit: false}">{{ wCount }}</ion-badge>
                 </a>
 
                 <!-- map of visited breweries -->
@@ -34,12 +35,15 @@
                 </a>
 
                 <!-- event list -->
-                <a class="tab-item noBorder" ui-sref="tab.dash.events" title="By Elegant Themes [GPL (http://www.gnu.org/licenses/gpl.html)], via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File%3ACircle-icons-calendar.svg"><img width="36" alt="Circle-icons-calendar" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Circle-icons-calendar.svg/32px-Circle-icons-calendar.svg.png"/>
-                  <ion-badge badge-font-size="2.5em" id="notifications-badge" ui-sref-opts="{reload: true, inherit: false}">{{ eCount }}</ion-badge>
+                <a cache-view="false" class="tab-item noBorder" ui-sref="tab.dash.events" ui-sref-opts="{reload: true, inherit: false}" title="By Elegant Themes [GPL (http://www.gnu.org/licenses/gpl.html)], via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File%3ACircle-icons-calendar.svg"><img width="36" alt="Circle-icons-calendar" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Circle-icons-calendar.svg/32px-Circle-icons-calendar.svg.png"/>
+                  <ion-badge  cache-view="false" badge-font-size="2.5em" id="notifications-badge" ui-sref-opts="{reload: true, inherit: false}">{{ eCount }}</ion-badge>
                 </a>
               </div>
             </div>
       </ion-item>
-
-  <ui-view name="dash-page"></ui-view>
+      <ui-view name="dash-page" ui-sref-opts="{reload: true, inherit: false"}></ui-view>
+    </ion-content>
+      <div class="float-button">
+        <a href="" ng-click="scrollMainToTop()" class="button button-outline button-positive"><i class="ion-arrow-up-a"></i></a>
+      </div>
 </ion-view>

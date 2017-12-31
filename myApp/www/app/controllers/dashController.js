@@ -1,14 +1,19 @@
 angular.module('BeerApp')
-    .controller('DashCtrl', function ($scope, $state, $ionicModal, $ionicLoading, $timeout, BeerFactory, AuthFactory) {
+    .controller('DashCtrl', function ($scope, $state, $ionicModal, $stateParams, $ionicLoading, $timeout, BeerFactory, AuthFactory, $ionicScrollDelegate) {
         $scope.name = ""
         $scope.photo = ""
         $scope.count = 0
         $scope.eCount = 0
         $scope.bCount = 0
         $scope.wCount = 0
+        $scope.beers = []
 
-         //Ionic code needed to show and close Modal
-         $ionicModal.fromTemplateUrl('./app/partials/mapModal.html', {
+        $scope.scrollMainToTop = function () {
+            $ionicScrollDelegate.scrollTop(true);
+        };
+
+        //Ionic code needed to show and close Modal
+        $ionicModal.fromTemplateUrl('./app/partials/mapModal.html', {
             scope: $scope,
             animation: 'slide-in-up',
             focusFirstInput: true
@@ -27,47 +32,55 @@ angular.module('BeerApp')
             $scope.modal.hide();
         };
 
-        function loadDash() {
-            drinker = AuthFactory.getUser()
-            $scope.name = drinker.displayName
-            $scope.photo = drinker.photoURL
-            //get beer count
+        //get beer count
+        function beerCount(drinker) {
             BeerFactory.getLoggedBeers(drinker.uid).then(data => {
                 $timeout(function () {
                     console.log()
                 }, 100)
                 result = data.filter(b => b.wishlist === false)
                 $scope.count = result.length
-                console.log("beer count", $scope.count)
             })
-            //get brewery count
+        }
+        //get brewery count
+        function breweryCount(drinker) {
             BeerFactory.getLoggedBreweries(drinker.uid).then(data => {
                 $timeout(function () {
                     console.log()
                 }, 100)
                 $scope.bCount = data.length
-                console.log("brewery count", $scope.bCount)
             })
-            //get wishlist count
+        }
+        //get wishlist count
+        function wishCount(drinker) {
             BeerFactory.getLoggedBeers(drinker.uid).then(data => {
                 $timeout(function () {
                     console.log()
                 }, 100)
                 result = data.filter(w => w.wishlist === true)
                 $scope.wCount = result.length
-                console.log("wishlist count", $scope.wCount)
             })
-            //get event count
+        }
+
+        //get event count
+        function eventCount(drinker) {
             BeerFactory.getUserEvents(drinker.uid).then(data => {
                 $timeout(function () {
                     console.log()
                 }, 100)
                 $scope.eCount = data.length
-                console.log("event count", $scope.eCount)
             })
-        }//END loadDash
+        }//END eventCount
 
-        
+        function loadDash() {
+            drinker = AuthFactory.getUser()
+            $scope.name = drinker.displayName
+            $scope.photo = drinker.photoURL
+            beerCount(drinker)
+            breweryCount(drinker)
+            eventCount(drinker)
+            wishCount(drinker)
+        }//END loadDash
 
         $scope.showVisited = function () {
             $scope.openModal()

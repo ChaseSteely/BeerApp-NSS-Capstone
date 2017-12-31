@@ -18,24 +18,7 @@ angular.module('BeerApp')
             BeerFactory.wishGranted("false", id, "wishlist")
             let wishEl = document.getElementById(id)
             wishEl.parentNode.removeChild(wishEl)
-            drinker = AuthFactory.getUser().uid
-            BeerFactory.getLoggedBeers(drinker.uid).then(data => {
-                $timeout(function () {
-                    console.log()
-                }, 100)
-                result = data.filter(b => b.wishlist === false)
-                $scope.count = result.length
-                console.log("beer count", $scope.count)
-            })//END refresh beer count
-             //get wishlist count
-             BeerFactory.getLoggedBeers(drinker.uid).then(data => {
-                $timeout(function () {
-                    console.log()
-                }, 100)
-                result = data.filter(w => w.wishlist === true)
-                $scope.wCount = result.length
-                console.log("wishlist count", $scope.wCount)
-            })//END refresh wish count
+            $state.reload($state.current.name);
         }//END deleteWish()
 
          // $scope.showToast = function(message) {
