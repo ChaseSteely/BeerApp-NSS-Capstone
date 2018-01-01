@@ -1,15 +1,22 @@
 <ion-view title="BEER LIST">
-    <div class="dashBeers has-tabs-top">
-        <label class="item item-input item-floating-label noBorder">
-            <input class="text-center" type="text" ng-model="query" placeholder="search">
-        </label>
-        <ion-item ng-repeat="beer in beers | filter: query | filter: {wishlist: false}:true | orderBy : '-dateLogged'" class="list card noBorder">
-            <div class="item item-body">
-                <img class="beerLogo searchPhoto" ng-src="{{ beer.url  || '../img/beer.jpg' }}">
-                <h4 class="text-center">{{ beer.data.beer.beer_name }}</h4>
-                <h4 class="text-center">{{ beer.data.beer.beer_style }}</h4>
-                <h4 class="text-center">Rating: {{ beer.rating }}</h4>
+    <ion-content delegate-handle="mainScroll">
+        <div class=" dashBeers has-tabs-top noBorder">
+            <label class="item item-input item-floating-label noBorder">
+                <input class="text-center" type="text" ng-model="query" placeholder="search">
+            </label>
+            <div ng-repeat="beer in beers | filter: query | filter: {wishlist: false}:true | orderBy : '-dateLogged'" class="list card noBorder">
+                <div class="item item-body">
+                    <img class="beerLogo searchPhoto" ng-src="{{ beer.url  || '../img/beer.jpg' }}">
+                    <h4 class="text-center">{{ beer.data.beer.beer_name }}</h4>
+                    <h4 class="text-center">{{ beer.data.beer.beer_style }}</h4>
+                    <h4 class="text-center">Rating: {{ beer.rating }}</h4>
+                </div>
             </div>
-        </ion-item>
+        </div>
+    </ion-content>
+    <div class="float-button">
+        <a href="" ng-click="scrollMainToTop()" class="button button-outline button-positive">
+            <i class="ion-arrow-up-a"></i>
+        </a>
     </div>
 </ion-view>

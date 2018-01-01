@@ -1,6 +1,11 @@
 angular.module('BeerApp')
-    .controller('DashEventsCtrl', function ($scope, $state, $timeout, $ionicLoading, BeerFactory, AuthFactory) {
+    .controller('DashEventsCtrl', function ($scope, $state, $timeout, $ionicLoading, $ionicScrollDelegate, BeerFactory, AuthFactory) {
         $scope.events = []
+
+        $scope.scrollMainToTop = function () {
+            $ionicScrollDelegate.scrollTop(true);
+        };
+
         //get wishlist by current User on tab click
         function getEventList() {
             drinker = AuthFactory.getUser().uid
@@ -12,7 +17,7 @@ angular.module('BeerApp')
                 console.log($scope.events)
             })
         }
-
+//deletes event and removes the element from the DOM. I've read tons of documnetation but in Ionic 1, there isn't a way I found to automatically update the badge. I tried around 30-40 different ways.
         $scope.deleteEvent = function (id) {
             console.log("deleting", id)
             BeerFactory.byeByeEvent(id)

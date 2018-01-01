@@ -1,6 +1,11 @@
 angular.module('BeerApp')
-    .controller('DashWishCtrl', function ($scope, $state, $timeout, $ionicLoading, BeerFactory, AuthFactory) {
+    .controller('DashWishCtrl', function ($scope, $state, $timeout, $ionicLoading, $ionicScrollDelegate, BeerFactory, AuthFactory) {
         $scope.wishes = []
+
+        $scope.scrollMainToTop = function () {
+            $ionicScrollDelegate.scrollTop(true);
+        };
+
         //get wishlist by current User on tab click
         function getWishList() {
             drinker = AuthFactory.getUser().uid
@@ -28,7 +33,7 @@ angular.module('BeerApp')
         //     else $ionicLoading.show({ template: "Cheers", noBackdrop: true, duration: 2000 });
         // }
 
-        //when page loads load the Events
+        //when page loads load the WishList
         if (document.readyState === "complete") {
             getWishList()
         }

@@ -1,7 +1,7 @@
 <ion-view title="The Nashville Pub">
-    <ion-content class="padding has-tabs-top">
-        <div ng-repeat="pub in pubs.checkins.items" class="list card padding">
-            <div class="item item-body padding">
+    <ion-content class="has-tabs-top">
+        <div ng-repeat="pub in pubs.checkins.items" class="list card">
+            <div class="item item-body">
                 <img class="beerLogo" ng-src="{{ pub.beer.beer_label | trusted}}">
                 <h4 class="text-center">{{ pub.beer.beer_name }}</h4>
                 <h4 class="text-center">{{ pub.beer.beer_style }}</h4>

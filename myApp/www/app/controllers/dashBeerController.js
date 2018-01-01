@@ -1,6 +1,11 @@
 angular.module('BeerApp')
-    .controller('DashBeerCtrl', function ($scope, $state, $timeout, $ionicLoading, BeerFactory, AuthFactory) {
+    .controller('DashBeerCtrl', function ($scope, $state, $timeout, $ionicLoading, $ionicScrollDelegate, BeerFactory, AuthFactory) {
         $scope.beers = []
+
+        $scope.scrollMainToTop = function () {
+            $ionicScrollDelegate.scrollTop(true);
+        };
+
         //get beers logged by current User on tab click
         function getBeers() {
             drinker = AuthFactory.getUser().uid

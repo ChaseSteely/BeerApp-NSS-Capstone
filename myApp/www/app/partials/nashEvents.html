@@ -1,6 +1,16 @@
 <ion-view title="Nashville Events">
-    <ion-content class="padding has-tabs-top">
-
+    <ion-content class="has-tabs-top">
+        <div ng-repeat="event in events | orderBy : 'date'" class="list card">
+            <div class="item item-body">
+                <h4 class="text-center">{{ event.date | date : 'MM/dd/yyyy @ h:mma' }}</h4>
+                <h4 class="text-center">{{ event.name }}</h4>
+                <h4 class="text-center">{{ event.venue }}</h4>
+                <h4 class="text-center">{{ event.address }}</h4>
+                <h4 class="text-center">{{ event.description. }}</h4>
+                <button id="{{ event.id }}" class="button button-block button-positive" ng-click="saveEvent($event)">Save Event</button>
+           </div>
+        </div>
+        
         <!-- Just in case I need to add more events -->
             <!-- <div class="list list-inset">
                     <label class="item item-input">
@@ -24,15 +34,5 @@
                     <button class="button button-block button-positive" ng-click="createEvent()">Event</button>
                 </div> -->
         
-        <div ng-repeat="event in events | orderBy : 'date'" class="list card padding">
-            <div class="item item-body">
-                <h4 class="text-center">{{ event.date | date : 'MM/dd/yyyy @ h:mma' }}</h4>
-                <h4 class="text-center">{{ event.name }}</h4>
-                <h4 class="text-center">{{ event.venue }}</h4>
-                <h4 class="text-center">{{ event.address }}</h4>
-                <h4 class="text-center">{{ event.description. }}</h4>
-                <button id="{{ event.id }}" class="button button-block button-positive" ng-click="saveEvent($event)">Save Event</button>
-           </div>
-        </div>
     </ion-content>
 </ion-view>
