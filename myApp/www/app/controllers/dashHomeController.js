@@ -4,8 +4,10 @@ angular.module('BeerApp')
         $scope.photo = ""
         $scope.uniqueBeers = 0
         $scope.localBeers = 0
+        $scope.localBreweries = 0
         let uCount = []
         let localCount = []
+        let localBrewCount = []
    
         //get beer count
         function uniqueBeerCount(drinker) {
@@ -43,12 +45,29 @@ angular.module('BeerApp')
         }
 
 
+        function localBreweryCount(drinker) {
+            BeerFactory.getLoggedBreweries(drinker.uid).then(data => {
+                $timeout(function () {
+                    console.log()
+                }, 100)
+                for (i = 0; i < data.length; i++) {
+                    if (localBrewCount.indexOf(data[i].brewery.brewery.brewery_id) === -1) {
+                        localBrewCount.push(data[i]);
+                    }
+                }
+                brewData = localBrewCount.filter(b => b.brewery.brewery.location.brewery_city === "Nashville" || b.brewery.brewery.location.brewery_city === "Murfreesboro" || b.brewery.brewery.location.brewery_city === "Franklin" || b.brewery.brewery.location.brewery_city === "HENDERSONVILLE" || b.brewery.brewery.location.brewery_city === "Nolensville" || b.brewery.brewery.location.brewery_city === "Gallatin" || b.brewery.brewery.location.brewery_city === "Nashville")
+                $scope.localBreweries = brewData.length
+            })
+        }
+
+
         function loadHome() {
             drinker = AuthFactory.getUser()
             $scope.name = drinker.displayName
             $scope.photo = drinker.photoURL
             uniqueBeerCount(drinker)
             localBeerCount(drinker)
+            localBreweryCount(drinker)
         }
 
 

@@ -55,12 +55,13 @@ angular.module('BeerApp')
             breweryCount(drinker)
             eventCount(drinker)
             wishCount(drinker)
-            $state.go('tab.dash.home')
+            $state.go('tab.dash.home', {reload:true, inhert:false})
         }//END loadDash
 
         //when page loads load the dash
         if (document.readyState === "complete") {
             loadDash()
+            // $state.go('tab.dash.home')
         }
     })
 
