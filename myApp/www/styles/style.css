@@ -14,7 +14,7 @@ body {
 }
 
 h1, .tab-title, .button {
-  font-family: 'Josefin Slab:700', serif;
+font-family: 'Josefin Slab:700', serif;
  font-weight: bold;
 }
 
@@ -42,6 +42,15 @@ h1, .tab-title, .button {
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+
+.breweries {
+  content: url("../img/brewery.png");
+  width: 45px;
+  height: 60px;
+  padding: 1px 1px 1px;
+  opacity: 0.9;
 }
 
 .beerImg {

@@ -1,11 +1,17 @@
 angular
     .module("BeerApp")
-    .controller("BeerCtrl", function (BeerFactory, $timeout, $ionicLoading, $scope, $cordovaCamera, $cordovaFile, Firebase_Config, $cordovaToast) {
+    .controller("BeerCtrl", function (BeerFactory, $timeout, $ionicLoading, $scope, $cordovaCamera, $cordovaFile, Firebase_Config, $cordovaToast, $ionicScrollDelegate) {
         $scope.beers = []
         $scope.query = ""
         $scope.downloadURL = ""
         $scope.myRating = ""
         $scope.beerLog = {}
+        $scope.count = ""
+
+         //Ionic scroll delegate.
+         $scope.scrollMainToTop = function () {
+            $ionicScrollDelegate.scrollTop(true);
+        };
 
         //  Use factory to get all beers from Firebase
         $scope.finder = (event, query) => {
@@ -14,8 +20,14 @@ angular
                     $timeout(function () {
                         console.log()
                     }, 100)
+                    if (data.beers.count === 0 ){
+                        $scope.count = "No Results"
+
+                    }else {
+                        $scope.count = ""
+                    }
                     $scope.beers = data
-                    console.log($scope.beers)
+                    console.log("beers", $scope.beers)
                 })
             }
 

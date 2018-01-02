@@ -1,5 +1,5 @@
 angular.module('BeerApp')
-    .factory('BeerFactory', function ($http, AuthFactory, Firebase_Config, Untappd) {
+    .factory('BeerFactory', function ($http, AuthFactory,  Firebase_Config, Untappd) {
         return Object.create(null, {
             "cache": {
                 value: null,
@@ -10,8 +10,9 @@ angular.module('BeerApp')
                     return $http({
                         method: "GET",
                         url: `https://api.untappd.com/v4/search/beer/?q=${query}&client_id=${Untappd.clientID}&client_secret=${Untappd.clientSecret}`,
-                    }).then(response => {
+                    }).then(function successCallback(response) {
                         return response.data.response
+                    }, function errorCallback(response) {
                     })
                 }
             },

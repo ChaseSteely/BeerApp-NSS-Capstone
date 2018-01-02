@@ -4,11 +4,17 @@
 
 angular
     .module("BeerApp")
-    .controller("BreweryCtrl", function (BeerFactory, $timeout, $ionicLoading, $scope, Firebase_Config, $ionicModal) {
+    .controller("BreweryCtrl", function (BeerFactory, $timeout, $ionicLoading, $scope, Firebase_Config, $ionicModal, $ionicScrollDelegate) {
         $scope.breweries = []
         $scope.infos = []
         $scope.brewLog = {}
         $scope.query = ""
+        $scope.count = ""
+
+        //Ionic scroll delegate.
+        $scope.scrollMainToTop = function () {
+            $ionicScrollDelegate.scrollTop(true);
+        };
 
         //Ionic code needed to show and close Modal
         $ionicModal.fromTemplateUrl('./app/partials/breweryInfoModal.html', {
@@ -26,7 +32,6 @@ angular
         $scope.closeModal = function (event) {
             $scope.modal.hide();
             let bID = parseInt(event.target.id)
-            console.log(bID)
             BeerFactory.visitBrewery(bID).then(data => {
                 $timeout(function () {
                     console.log()
@@ -52,6 +57,12 @@ angular
                     $timeout(function () {
                         console.log()
                     }, 100)
+                    if (data.brewery.count === 0 ){
+                        $scope.count = "No Results"
+
+                    }else {
+                        $scope.count = ""
+                    }
                     $scope.breweries = data
                     console.log($scope.breweries)
                 })

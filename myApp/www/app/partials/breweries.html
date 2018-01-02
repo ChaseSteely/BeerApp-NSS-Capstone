@@ -1,12 +1,12 @@
 <ion-view title="Brewery Search">
-    <ion-content class="padding">
-        <div class="list list-inset">
-            <label class="item item-input">
-                <i class="icon ion-search placeholder-icon" style="color: #FF8200"></i>
-                <input ng-model="query" ng-keypress="finder($event, query)" type="text" placeholder="search">
+    <ion-content delegate-handle="mainScroll">
+        <div class="list list-inset noBorder">
+            <label class="item item-input item-floating-label noBorder">
+                <input class="text-center" ng-model="query" ng-keypress="finder($event, query)" type="text" placeholder="search">
             </label>
         </div>
-        <div ng-repeat="brewery in breweries.brewery.items" class="list card padding">
+        <h4 class="text-center">{{ count }}</h4>
+        <div ng-repeat="brewery in breweries.brewery.items" class="list card noBorder">
             <div class="item item-body">
                 <img class="beerLogo" ng-src="{{ brewery.brewery.brewery_label | trusted}}">
                 <!-- <h4 class="text-center">{{ beer.beer.beer_name }}</h4> -->
@@ -15,4 +15,9 @@
             </div>
         </div>
     </ion-content>
+    <div class="float-button">
+        <a href="" ng-click="scrollMainToTop()" class="button button-outline button-positive">
+            <i class="ion-arrow-up-a"></i>
+        </a>
+    </div>
 </ion-view>
