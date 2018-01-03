@@ -5,6 +5,7 @@
                 <input class="text-center" ng-model="query" ng-keypress="finder($event, query)" type="text" placeholder="search">
             </label>
         </div>
+        <img id="logo" src="../../img/logo.png">
         <h4 class="text-center">{{ count }}</h4>
         <div ng-repeat="brewery in breweries.brewery.items" class="list card noBorder">
             <div class="item item-body">

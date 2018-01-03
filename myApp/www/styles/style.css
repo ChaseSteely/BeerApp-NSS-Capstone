@@ -43,7 +43,18 @@ font-family: 'Josefin Slab:700', serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+.bar-stable {
+  background-color: white;
+}
+#logo{
+  display: block;
+  object-fit: contain;
+  max-width: 100%;
+  max-height: 100%;
+  margin: 0 auto;
+  width: auto;
+  height: auto;
+}
 
 .breweries {
   content: url("../img/brewery.png");
@@ -55,6 +66,12 @@ font-family: 'Josefin Slab:700', serif;
 
 .beerImg {
   object-fit: contain;
+}
+
+.title-image {
+  margin-top: 5px;
+  height: 36px;
+  border-radius: 100%;
 }
 
 .searchPhoto {
