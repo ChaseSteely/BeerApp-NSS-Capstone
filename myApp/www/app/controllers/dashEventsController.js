@@ -1,6 +1,7 @@
 angular.module('BeerApp')
-    .controller('DashEventsCtrl', function ($scope, $state, $timeout, $ionicLoading, $ionicScrollDelegate, BeerFactory, AuthFactory) {
+    .controller('DashEventsCtrl', function ($scope, $state, $timeout, $ionicLoading, $ionicScrollDelegate, $cordovaToast, BeerFactory, AuthFactory) {
         $scope.events = []
+        $scope.msg = ""
 
         $scope.scrollMainToTop = function () {
             $ionicScrollDelegate.scrollTop(true);
@@ -26,12 +27,12 @@ angular.module('BeerApp')
             $state.reload($state.current.name);
         }
 
-         // $scope.showToast = function(message) {
-        //     if (window.plugins && window.plugins.toast) {
-        //         window.plugins.toast.showLongCenter("Cheers");
-        //     }
-        //     else $ionicLoading.show({ template: "Cheers", noBackdrop: true, duration: 2000 });
-        // }
+         $scope.showToast = function(message) {
+            if (window.plugins && window.plugins.toast) {
+                window.plugins.toast.showLongCenter("Deleted");
+            }
+            else $ionicLoading.show({ template: "Cheers", noBackdrop: true, duration: 2000 });
+        }
 
         //when page loads load the Events
         if (document.readyState === "complete") {

@@ -1,5 +1,5 @@
 angular.module('BeerApp')
-    .controller('DashBeerCtrl', function ($scope, $state, $timeout, $ionicLoading, $ionicScrollDelegate, BeerFactory, AuthFactory) {
+    .controller('DashBeerCtrl', function ($scope, $state, $timeout, $ionicScrollDelegate, BeerFactory, AuthFactory) {
         $scope.beers = []
 
         $scope.scrollMainToTop = function () {
@@ -18,14 +18,7 @@ angular.module('BeerApp')
             })
         }//END getBeers()
 
-         // $scope.showToast = function(message) {
-        //     if (window.plugins && window.plugins.toast) {
-        //         window.plugins.toast.showLongCenter("Cheers");
-        //     }
-        //     else $ionicLoading.show({ template: "Cheers", noBackdrop: true, duration: 2000 });
-        // }
-
-        //when page loads load the Events
+        //when page loads load the Beers
         if (document.readyState === "complete") {
             getBeers()
         }

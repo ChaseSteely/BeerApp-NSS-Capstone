@@ -12,7 +12,7 @@
                     <h4 class="text-center">{{ evnt.data.0.venue }}</h4>
                     <h4 class="text-center">{{ evnt.data.0.address }}</h4>
                     <h4 class="text-center">{{ evnt.data.0.description }}</h4>
-                    <button class="button button-block button-positive" ng-click="deleteEvent(evnt.id)">Delete Event</button>
+                    <button class="button button-block button-positive" ng-click="deleteEvent(evnt.id); showToast($scope.msg)">Delete Event</button>
                 </div>
             </div>
         </div>

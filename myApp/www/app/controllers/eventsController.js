@@ -1,5 +1,5 @@
 angular.module('BeerApp')
-    .controller('EventCtrl', function ($scope, $state, $ionicModal, $ionicLoading, $timeout, BeerFactory, AuthFactory) {
+    .controller('EventCtrl', function ($scope, $state, $ionicModal, $ionicLoading, $timeout, BeerFactory, $cordovaToast, AuthFactory, $ionicScrollDelegate) {
         $scope.eventLog = {}
         $scope.events = []
         //Just in case I need to add event.
@@ -25,6 +25,11 @@ angular.module('BeerApp')
         //         console.log(e)
 
         //     }
+
+         //Ionic scroll delegate.
+         $scope.scrollMainToTop = function () {
+            $ionicScrollDelegate.scrollTop(true);
+        };
 
         function loadEvents() {
             BeerFactory.getEvents().then(data => {
@@ -56,6 +61,13 @@ angular.module('BeerApp')
                 BeerFactory.logEvent(eLog)
 
             })
+        }
+
+        $scope.showToast = function(message) {
+            if (window.plugins && window.plugins.toast) {
+                window.plugins.toast.showLongCenter("Event Saved");
+            }
+            else $ionicLoading.show({ template: "Event Saved", noBackdrop: true, duration: 2000 });
         }
 
         //when page loads load the Events

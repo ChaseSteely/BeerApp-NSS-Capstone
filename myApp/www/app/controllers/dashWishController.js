@@ -1,5 +1,5 @@
 angular.module('BeerApp')
-    .controller('DashWishCtrl', function ($scope, $state, $timeout, $ionicLoading, $ionicScrollDelegate, BeerFactory, AuthFactory) {
+    .controller('DashWishCtrl', function ($scope, $state, $timeout, $ionicLoading, $ionicScrollDelegate, $cordovaToast, BeerFactory, AuthFactory) {
         $scope.wishes = []
 
         $scope.scrollMainToTop = function () {
@@ -26,12 +26,12 @@ angular.module('BeerApp')
             $state.reload($state.current.name);
         }//END deleteWish()
 
-         // $scope.showToast = function(message) {
-        //     if (window.plugins && window.plugins.toast) {
-        //         window.plugins.toast.showLongCenter("Cheers");
-        //     }
-        //     else $ionicLoading.show({ template: "Cheers", noBackdrop: true, duration: 2000 });
-        // }
+         $scope.showToast = function(message) {
+            if (window.plugins && window.plugins.toast) {
+                window.plugins.toast.showLongCenter("Wish Granted!");
+            }
+            else $ionicLoading.show({ template: "Cheers", noBackdrop: true, duration: 2000 });
+        }
 
         //when page loads load the WishList
         if (document.readyState === "complete") {

@@ -1,5 +1,5 @@
 angular.module('BeerApp')
-    .controller('NashCtrl', function ($scope, $state,  $timeout, $ionicLoading, BeerFactory, AuthFactory) {
+    .controller('NashCtrl', function ($scope, $state, $timeout, $ionicLoading, BeerFactory,  $ionicModal, AuthFactory) {
 
         function initialize() {
             let mapOptions = {
@@ -12,7 +12,6 @@ angular.module('BeerApp')
             function placeMarkers() {
                 //Get all of the markers from factory
                 BeerFactory.getMarkers().then(data => {
-                    console.log("Markers: ", data);
                     $scope.markers = data;
                     for (let i = 0; i < data.length; i++) {
                         markerEl = data[i];
@@ -28,7 +27,6 @@ angular.module('BeerApp')
                             "<h4>" + markerEl.brewery.brewery_name + "</h4>" +
                             '<a href="' + markerEl.brewery.contact.url + '"target="_blank">' + markerEl.brewery.contact.url + "</a>";
 
-
                         marker.addListener('click', function () {
                             map.setZoom(15);
                             infowindow.open(map, marker);
@@ -36,6 +34,7 @@ angular.module('BeerApp')
                         let infowindow = new google.maps.InfoWindow({
                             content: windowContent
                         });
+            
                         google.maps.event.addListener(infowindow, 'closeclick', function () {
                             map.setZoom(12);
                             map.setCenter({ lat: 36.161049, lng: -86.777223 })
