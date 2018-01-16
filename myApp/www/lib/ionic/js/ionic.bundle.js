@@ -28,6 +28,7 @@ window.ionic = {
   version: '0.9.27'
 };
 
+
 (function(ionic) {
 
   var bezierCoord = function (x,y) {

@@ -65,6 +65,7 @@ angular.module('ionic', [
     'ui.router'
 ]);
 
+$ionicConfigProvider.views.maxCache(0);
 
 angular.element.prototype.addClass = function(cssClasses) {
   var x, y, cssClass, el, splitClasses, existingClasses;

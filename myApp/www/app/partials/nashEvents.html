@@ -1,0 +1,41 @@
+<ion-view title="Nashville Events">
+    <ion-content delegate-handle="mainScroll" class="has-tabs-top">
+        <div ng-repeat="event in events | orderBy : 'date'" class="list card">
+            <div class="item item-body">
+                <h4 class="text-center">{{ event.date | date : 'MM/dd/yyyy @ h:mma' }}</h4>
+                <h4 class="text-center">{{ event.name }}</h4>
+                <h4 class="text-center">{{ event.venue }}</h4>
+                <h4 class="text-center">{{ event.address }}</h4>
+                <h4 class="text-center">{{ event.description. }}</h4>
+                <button id="{{ event.id }}" class="button button-block button-positive" ng-click="saveEvent($event); showToast($scope.msg)">Save Event</button>
+           </div>
+        </div>
+        
+        <!-- Just in case I need to add more events -->
+            <!-- <div class="list list-inset">
+                    <label class="item item-input">
+                        <input type="text" placeholder="name" ng-model="events.name" autofocus>
+                    </label>
+                    <label class="item item-input">
+                        <input type="text" placeholder="venue" ng-model="events.venue" >
+                    </label>
+                    <label class="item item-input">
+                        <input type="datetime-local" placeholder="time" ng-model="events.date">
+                    </label>
+                    <label class="item item-input">
+                        <input type="text" placeholder="description" ng-model="events.description">
+                    </label>
+                    <label class="item item-input">
+                        <input type="text" placeholder="image" ng-model="events.photoURL">
+                    </label>
+                    <label class="item item-input">
+                        <input type="text" placeholder="address" ng-model="events.address">
+                    </label>
+                    <button class="button button-block button-positive" ng-click="createEvent()">Event</button>
+                </div> -->
+        
+    </ion-content>
+    <div class="float-button">
+            <a href="" ng-click="scrollMainToTop()" class="button button-outline button-positive"><i class="ion-arrow-up-a"></i></a>
+          </div>
+</ion-view>

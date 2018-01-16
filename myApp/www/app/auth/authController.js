@@ -1,6 +1,21 @@
 angular.module("BeerApp")
-    .controller("AuthCtrl", function ($scope, $location, $state, AuthFactory, $timeout) {
+    .controller("AuthCtrl", function ($scope, $location, $state, AuthFactory, $timeout, $ionicModal, $cordovaCamera) {
         $scope.auth = {}
+
+        //Ionic code needed to show and close Modal
+        $ionicModal.fromTemplateUrl('./app/auth/registerModal.html', {
+            scope: $scope,
+            animation: 'slide-in-up',
+            focusFirstInput: true
+        }).then(function (modal) {
+            $scope.modal = modal;
+        });
+
+        $scope.openModal = function () {
+            $timeout(function(){
+                $scope.modal.show(); 
+                },100)
+        };
 
         $scope.logoutUser = function () {
             AuthFactory.logout()
@@ -12,16 +27,22 @@ angular.module("BeerApp")
                 $scope.login = {}
                 $timeout(function () {
                     $location.url("/tab/dash")
-                }, 1)
+                }, 1000)
             })
         }
 
-        $scope.registerUser = function (registerNewUser) {
+        $scope.reg = function (registerNewUser) {
             AuthFactory.registerWithEmail(registerNewUser)
-                .then(function (didRegister) {
-                    $scope.logMeIn(registerNewUser)
-                    AuthFactory.updateProfile(registerNewUser)
-                })
+            .then(function (didRegister) {
+                $scope.modal.hide();
+                AuthFactory.updateProfile(registerNewUser)
+                $scope.logMeIn(registerNewUser)
+
+            })
         }
+
+        $scope.hideModal = function () {
+            $scope.modal.hide();
+        };
 
     })

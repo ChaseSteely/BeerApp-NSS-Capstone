@@ -1,0 +1,24 @@
+<ion-view title="BREWERIES">
+    <ion-content delegate-handle="mainScroll">
+        <div class="has-tabs-top dashBeers noBorder">
+            <label class="item item-input item-floating-label noBorder">
+                <input class="text-center" type="text" ng-model="query" placeholder="search">
+            </label>
+            <div ng-repeat="brewery in breweries | filter: query | orderBy : '-dateLogged'" class="list card noBorder">
+                <div class="item item-body">
+                    <img class="beerLogo" ng-src="{{ brewery.brewery.brewery.brewery_label | trusted}}">
+                    <h4 class="text-center">{{ brewery.brewery.brewery.brewery_name }}</h4>
+                    <h4 class="text-center">{{ brewery.brewery.brewery.brewery_type }}</h4>
+                    <h4 class="text-center">{{ brewery.brewery.brewery.location.brewery_address }}</h4>
+                    <h4 class="text-center">{{ brewery.brewery.brewery.location.brewery_city }}, {{ brewery.brewery.brewery.location.brewery_state }}</h4>
+                    <h4 class="text-center">Rating: {{ brewery.brewery.brewery.rating.rating_score.toFixed(2) }}/5</h4>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+    <div class="float-button">
+        <a href="" ng-click="scrollMainToTop()" class="button button-outline button-positive">
+            <i class="ion-arrow-up-a"></i>
+        </a>
+    </div>
+</ion-view>

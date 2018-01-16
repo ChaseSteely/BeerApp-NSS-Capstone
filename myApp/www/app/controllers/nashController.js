@@ -1,6 +1,6 @@
 angular.module('BeerApp')
-    .controller('MapCtrl', function ($scope, $state, $ionicLoading, BeerFactory) {
-        // $scope.markers = []
+    .controller('NashCtrl', function ($scope, $state, $timeout, $ionicLoading, BeerFactory,  $ionicModal, AuthFactory) {
+
         function initialize() {
             let mapOptions = {
                 center: new google.maps.LatLng(36.161049, -86.777223),
@@ -12,12 +12,11 @@ angular.module('BeerApp')
             function placeMarkers() {
                 //Get all of the markers from factory
                 BeerFactory.getMarkers().then(data => {
-                    console.log("Markers: ", data);
                     $scope.markers = data;
                     for (let i = 0; i < data.length; i++) {
                         markerEl = data[i];
-                        markerSpot = new google.maps.LatLng(markerEl.lat, markerEl.lng);
-                        // Add the markerto the map
+                        markerSpot = new google.maps.LatLng(markerEl.brewery.location.brewery_lat, markerEl.brewery.location.brewery_lng);
+                        // Add the marker to the map
                         let marker = new google.maps.Marker({
                             animation: google.maps.Animation.DROP,
                             position: markerSpot,
@@ -25,9 +24,8 @@ angular.module('BeerApp')
                         });
 
                         windowContent =
-                            "<h4>" + markerEl.name + "</h4>" +
-                            '<a href="http://www.' + markerEl.website + '"target="_blank">' + markerEl.website + "</a>";
-
+                            "<h4>" + markerEl.brewery.brewery_name + "</h4>" +
+                            '<a href="' + markerEl.brewery.contact.url + '"target="_blank">' + markerEl.brewery.contact.url + "</a>";
 
                         marker.addListener('click', function () {
                             map.setZoom(15);
@@ -36,9 +34,10 @@ angular.module('BeerApp')
                         let infowindow = new google.maps.InfoWindow({
                             content: windowContent
                         });
+            
                         google.maps.event.addListener(infowindow, 'closeclick', function () {
                             map.setZoom(12);
-                            map.setCenter({lat: 36.161049, lng: -86.777223})
+                            map.setCenter({ lat: 36.161049, lng: -86.777223 })
                         });
 
                     }//END for Loop
@@ -55,25 +54,6 @@ angular.module('BeerApp')
 
         }//END intialize
 
-        $scope.centerOnMe = function () {
-            console.log("Centering");
-            if (!$scope.map) {
-                return;
-            }
-
-            $scope.loading = $ionicLoading.show({
-                content: 'Getting current location...',
-                showBackdrop: false
-            });
-
-            navigator.geolocation.getCurrentPosition(function (pos) {
-                console.log('Got pos', pos);
-                $scope.map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
-                $scope.loading.hide();
-            }, function (error) {
-                alert('Unable to get location: ' + error.message);
-            });
-        };
         if (document.readyState === "complete") {
             initialize();
         } else {

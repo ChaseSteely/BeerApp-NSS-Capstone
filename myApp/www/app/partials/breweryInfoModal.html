@@ -1,0 +1,17 @@
+<ion-modal-view class="modal">
+    <ion-content>
+        <div ng-repeat="info in infos" class="list card padding">
+            <div class="item item-body">
+                <h1 class="text-center">{{ info.brewery_name }}</h1>
+                <h4 class="text-center">{{ info.brewery_description }}</h4>
+                <h4 class="text-center">{{ info.brewery_type }}</h4>
+                <h4 class="text-center">Beer Count: {{ info.beer_count }}</h4>
+                <h4 class="text-center">{{ info.location.brewery_address }}</h4>
+                <h4 class="text-center">{{ info.location.brewery_city }}, {{ info.location.brewery_state }} </h4>
+                <h4 class="text-center">Rating: {{ info.rating.rating_score.toFixed(2) }}/5</h4>
+            </div>
+            <button id="{{ info.brewery_id }}" class="button button-block button-positive" ng-click="closeModal($event); showToast($scope.msg)">Log Brewery</button>
+            <button class="button button-block button-positive" ng-click="hideModal()">Cancel</button>
+        </div>
+    </ion-content>
+</ion-modal-view>

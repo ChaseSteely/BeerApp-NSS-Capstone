@@ -1,0 +1,23 @@
+<ion-view title="WISHLIST">
+    <ion-content delegate-handle="mainScroll">
+        <div class="has-tabs-top dashBeers noBorder">
+            <label class="item item-input item-floating-label noBorder">
+                <input class="text-center" type="text" ng-model="query" placeholder="search">
+            </label>
+            <div ng-repeat="wish in wishes | filter: query | filter: {wishlist: true}:true | orderBy : '-dateLogged'" class="list card noBorder">
+                <div id="{{wish.id}}" class="item item-body">
+                    <img class="beerLogo" ng-src="{{ wish.data.beer.beer_label | trusted}}">
+                    <h4 class="text-center">{{ wish.data.beer.beer_name }}</h4>
+                    <h4 class="text-center">{{ wish.data.beer.brewery.brewery_name }}</h4>
+                    <h4 class="text-center">{{ wish.data.beer.beer_style }}</h4>
+                    <button class="button button-block button-positive" ng-click="deleteWish(wish.id)">My Wish Was Granted</button>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+    <div class="float-button">
+        <a href="" ng-click="scrollMainToTop()" class="button button-outline button-positive">
+            <i class="ion-arrow-up-a"></i>
+        </a>
+    </div>
+</ion-view>

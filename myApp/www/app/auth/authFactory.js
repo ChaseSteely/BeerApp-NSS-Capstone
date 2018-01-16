@@ -11,7 +11,7 @@ angular.module("BeerApp")
                     $timeout(function () {
                         console.log("User is authenticated")
                         $location.url("/tab/dash")
-                    }, 1)
+                    }, 1000)
                 } else {
                     $state.reload();
                 }
