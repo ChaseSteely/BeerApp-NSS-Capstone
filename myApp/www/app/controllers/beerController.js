@@ -144,12 +144,12 @@ angular
             });
         }
 
-        $scope.showToast = function(message) {
-            if (window.plugins && window.plugins.toast) {
-                window.plugins.toast.showLongCenter("Cheers");
-            }
-            else $ionicLoading.show({ template: "Cheers", noBackdrop: true, duration: 2000 });
-        }
+        // $scope.showToast = function(message) {
+        //     if (window.plugins && window.plugins.toast) {
+        //         window.plugins.toast.showLongCenter("Cheers");
+        //     }
+        //     else $ionicLoading.show({ template: "Cheers", noBackdrop: true, duration: 2000 });
+        // }
     })
     //I have to use this to return the beer and brewery labels from Untappd API
     .filter('trusted', ['$sce', function ($sce) {

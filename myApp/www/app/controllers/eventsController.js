@@ -63,12 +63,12 @@ angular.module('BeerApp')
             })
         }
 
-        $scope.showToast = function(message) {
-            if (window.plugins && window.plugins.toast) {
-                window.plugins.toast.showLongCenter("Event Saved");
-            }
-            else $ionicLoading.show({ template: "Event Saved", noBackdrop: true, duration: 2000 });
-        }
+        // $scope.showToast = function(message) {
+        //     if (window.plugins && window.plugins.toast) {
+        //         window.plugins.toast.showLongCenter("Event Saved");
+        //     }
+        //     else $ionicLoading.show({ template: "Event Saved", noBackdrop: true, duration: 2000 });
+        // }
 
         //when page loads load the Events
         if (document.readyState === "complete") {

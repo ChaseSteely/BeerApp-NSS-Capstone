@@ -85,12 +85,12 @@ angular
 
         }
 
-        $scope.showToast = function(message) {
-            if (window.plugins && window.plugins.toast) {
-                window.plugins.toast.showLongCenter("Thanks for Visiting!");
-            }
-            else $ionicLoading.show({ template: "Thanks for Visiting!", noBackdrop: true, duration: 2000 });
-        }
+        // $scope.showToast = function(message) {
+        //     if (window.plugins && window.plugins.toast) {
+        //         window.plugins.toast.showLongCenter("Thanks for Visiting!");
+        //     }
+        //     else $ionicLoading.show({ template: "Thanks for Visiting!", noBackdrop: true, duration: 2000 });
+        // }
 
     })
 

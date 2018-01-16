@@ -15,7 +15,6 @@ angular.module('BeerApp')
                     console.log()
                 }, 100)
                 result = data.filter(b => b.wishlist === false)
-                console.log(result)
                 $scope.count = result.length
             })
         }
