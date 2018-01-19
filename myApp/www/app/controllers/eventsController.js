@@ -1,33 +1,10 @@
 angular.module('BeerApp')
-    .controller('EventCtrl', function ($scope, $state, $ionicModal, $ionicLoading, $timeout, BeerFactory, $cordovaToast, AuthFactory, $ionicScrollDelegate) {
+    .controller('EventCtrl', function ($scope, $state, $ionicModal, $ionicLoading, $timeout, BeerFactory, AuthFactory, $ionicScrollDelegate) {
         $scope.eventLog = {}
         $scope.events = []
-        //Just in case I need to add event.
-        //   $scope.events = {}
-        //   $scope.name = ""
-        //   $scope.venue = ""
-        //   $scope.date = ""
-        //   $scope.photoURL = ""
-        //   $scope.address = ""
-        //   $scope.description = ""
-        //     $scope.createEvent = function () {
 
-        //         $scope.e = {
-        //             "name": $scope.name,
-        //             "venue": $scope.venue,
-        //             "date": $scope.date,
-        //             "photo": $scope.photoURL,
-        //             "address": $scope.address,
-        //             "description": $scope.description
-        //         }
-        //         e = $scope.events
-        //         BeerFactory.postEvent(e)
-        //         console.log(e)
-
-        //     }
-
-         //Ionic scroll delegate.
-         $scope.scrollMainToTop = function () {
+        //Ionic scroll delegate.
+        $scope.scrollMainToTop = function () {
             $ionicScrollDelegate.scrollTop(true);
         };
 
@@ -61,14 +38,30 @@ angular.module('BeerApp')
                 BeerFactory.logEvent(eLog)
 
             })
-        }
+            //Just in case I need to add event.
+            //   $scope.events = {}
+            //   $scope.name = ""
+            //   $scope.venue = ""
+            //   $scope.date = ""
+            //   $scope.photoURL = ""
+            //   $scope.address = ""
+            //   $scope.description = ""
+            //     $scope.createEvent = function () {
 
-        // $scope.showToast = function(message) {
-        //     if (window.plugins && window.plugins.toast) {
-        //         window.plugins.toast.showLongCenter("Event Saved");
-        //     }
-        //     else $ionicLoading.show({ template: "Event Saved", noBackdrop: true, duration: 2000 });
-        // }
+            //         $scope.e = {
+            //             "name": $scope.name,
+            //             "venue": $scope.venue,
+            //             "date": $scope.date,
+            //             "photo": $scope.photoURL,
+            //             "address": $scope.address,
+            //             "description": $scope.description
+            //         }
+            //         e = $scope.events
+            //         BeerFactory.postEvent(e)
+            //         console.log(e)
+
+            //     }
+        }
 
         //when page loads load the Events
         if (document.readyState === "complete") {

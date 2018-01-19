@@ -1,5 +1,5 @@
 angular.module('BeerApp')
-    .controller('NashCtrl', function ($scope, $state, $timeout, $ionicLoading, BeerFactory,  $ionicModal, AuthFactory) {
+    .controller('NashCtrl', function ($scope, $state, $timeout, $ionicLoading, BeerFactory, $ionicModal, AuthFactory) {
 
         function initialize() {
             let mapOptions = {
@@ -34,7 +34,7 @@ angular.module('BeerApp')
                         let infowindow = new google.maps.InfoWindow({
                             content: windowContent
                         });
-            
+
                         google.maps.event.addListener(infowindow, 'closeclick', function () {
                             map.setZoom(12);
                             map.setCenter({ lat: 36.161049, lng: -86.777223 })

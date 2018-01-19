@@ -33,13 +33,6 @@ angular.module('BeerApp')
 
         }
 
-         // $scope.showToast = function(message) {
-        //     if (window.plugins && window.plugins.toast) {
-        //         window.plugins.toast.showLongCenter("Cheers");
-        //     }
-        //     else $ionicLoading.show({ template: "Cheers", noBackdrop: true, duration: 2000 });
-        // }
-
         //when page loads load the Events
         if (document.readyState === "complete") {
             loadPub()
