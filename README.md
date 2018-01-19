@@ -131,9 +131,6 @@ https://beercentricnashville.com/
     "cordova-ios": "4.5.4",
     "cordova-plugin-camera": "^3.0.0",
     "firebase": ^4.7.0
-```
-Give an example
-```
 
 ## Built With
 
